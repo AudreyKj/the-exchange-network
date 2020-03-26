@@ -4,7 +4,7 @@
 
 Social network app developed with React. <br>
 In this app, users can find people, make friends, chat, and post messages. It is themed around the idea of exchange: its distinctive feature is that users can post messages in an "Exchange" section to exchange languages, skills, or services with other users.
-<br />
+<br /><br />
 Technologies: HTML, CSS, JavaScript, Node with Express.js, PostgreSQL <br />
 Libraries: React, Three.js, Socket.IO, bcrypt <br />
 Storage: AWS <br />
