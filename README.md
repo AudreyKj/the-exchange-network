@@ -2,8 +2,8 @@
 
 ![screenshot](screenshot-socialnetwork.png)
 
-Social network app developed with React. <br>
-In this app, users can find people, make friends, chat, post messages, change their profile picture, delete their account, and logout. Users can also reset their password: an email is automatically send to their address with a code that they have to provide in order to change their password. <br> <br>
+Social network app developed with React. <br><br />
+In this app, users can find people, make friends, chat, post messages, change their profile picture, delete their account, and logout. Users can also reset their password: an email is automatically send to their address with a code that they have to provide to change it. <br> <br>
 This social network is themed around the idea of exchange: its distinctive feature is that users can post messages in an "Exchange" section to exchange languages, skills, or services with other users.
 <br /><br />
 Technologies: HTML, CSS, JavaScript, Node with Express.js, PostgreSQL <br />
