@@ -7,7 +7,7 @@ In this app, users can find people, make friends, chat, and post messages. It is
 <br /><br />
 Technologies: HTML, CSS, JavaScript, Node with Express.js, PostgreSQL <br />
 Libraries: React, Three.js, Socket.IO, bcrypt <br />
-Storage: AWS <br />
+Storage: AWS
 <br />
 <br />
 FUTURE IMPROVEMENT: <br />
