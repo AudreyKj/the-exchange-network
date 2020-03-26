@@ -13,4 +13,4 @@ Storage: AWS
 <br />
 FUTURE IMPROVEMENT: <br />
 At the moment, posts in the Exchange section are only visible to the users' friends.
-The user experience would be better if users could choose if their post was private or public.
+To improve user experience, I am planning on updating this section to let users choose if their post should be private or public.
