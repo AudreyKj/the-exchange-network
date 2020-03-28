@@ -8,7 +8,8 @@ This social network is themed around the idea of exchange: its distinctive featu
 <br /><br />
 Technologies: HTML, CSS, JavaScript, Node with Express.js, PostgreSQL <br />
 Libraries: React, Three.js, Socket.IO, bcrypt <br />
-Storage: AWS
+Storage: AWS <br />
+Tested with Jest
 <br />
 <br />
 FUTURE IMPROVEMENT: <br />
