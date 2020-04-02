@@ -1,4 +1,4 @@
-# the-social-network
+# React exchange app
 
 ![screenshot](screenshot-socialnetwork.png)
 
