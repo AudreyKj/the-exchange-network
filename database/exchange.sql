@@ -1,5 +1,3 @@
-
-
 CREATE TABLE exchange (
     id SERIAL PRIMARY KEY,
     author_user_id INT NOT NULL REFERENCES users(id),

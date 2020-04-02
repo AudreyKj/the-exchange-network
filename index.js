@@ -1,19 +1,21 @@
 const express = require("express");
 const app = express();
 const server = require("http").Server(app);
-const io = require("socket.io")(server, { origins: "localhost:8080" });
+const io = require("socket.io")(server, {
+  origins: "localhost:8080 127.0.0.1:8080 the-exchange-network.herokuapp.com:*"
+});
 const compression = require("compression");
 const db = require("./db.js");
 const { hash, compare } = require("./util/bc.js");
 const csurf = require("csurf");
-const ses = require("./ses.js");
+//const ses = require("./ses.js");
 const cryptoRandomString = require("crypto-random-string");
 const secretCode = cryptoRandomString({
   length: 6
 });
-const s3 = require("./s3.js");
+//const s3 = require("./s3.js");
 
-//////////FILE UPLOAD BOILERPLATE CODE /////////////////
+//file upload
 const multer = require("multer");
 const uidSafe = require("uid-safe");
 const path = require("path");
@@ -35,7 +37,6 @@ const uploader = multer({
     fileSize: 2097152
   }
 });
-//////////FILE UPLOAD BOILERPLATE CODE ENDS HERE/////////////////
 
 app.use(compression());
 
@@ -102,7 +103,7 @@ app.get("/logout", (req, res) => {
 app.get("/deleteaccount", async (req, res) => {
   let user_id = req.session.userId;
   let author_user_id = req.session.userId;
-  s3.delete(user_id.toString());
+  //s3.delete(user_id.toString());
   try {
     const deleteFriendInfo = await db.deleleInfoFriendship(user_id);
     const deleteMsgs = await db.deleteMsgs(user_id);
@@ -168,75 +169,75 @@ app.post("/login/submit", (req, res) => {
 });
 
 //PASSWORD RESET - VERIFY EMAIL
-app.post("/password/reset/start", (req, res) => {
-  let email = req.body.email;
-  let subject = "code to reset your password from social network";
-  let code = cryptoRandomString({ length: 10 });
-  let message = code;
-
-  db.verifyUser(email)
-    .then(result => {
-      if (result.rows.length == 0) {
-        return res.json({ error: true });
-      } else {
-        db.insertResetCode(email, code)
-          .then(result => {
-            return ses.sendEmail(email, subject, message);
-          })
-          .then(result => {
-            return res.json({ reset: true });
-          })
-          .catch(err => {
-            console.log("error", err);
-            return res.json({ error: true });
-          });
-      }
-    })
-    .catch(err => {
-      return res.json({ error: true });
-    });
-});
-
-//PASSWORD RESET - VERIFY CODE
-app.post("/password/reset/verify", (req, res) => {
-  let inputCode = req.body.code;
-  let password = req.body.password;
-  let id = req.session.userId;
-
-  db.verifyCode()
-    .then(result => {
-      const matchingitem = result.rows.filter(item => item.code === inputCode);
-
-      let codeDB = matchingitem[0].code;
-      codeDB.trim();
-      inputCode.trim();
-
-      if (codeDB === inputCode) {
-        hash(password)
-          .then(hashedPw => {
-            password = hashedPw;
-
-            req.session.userID = matchingitem[0].id;
-
-            db.updatePassword(password, id)
-              .then(result => {
-                return res.json({ verified: true });
-              })
-              .catch(err => {
-                return res.json({ error: true });
-              });
-          })
-          .catch(err => {
-            return res.json({ error: true });
-          });
-      } else {
-        return res.json({ error: true });
-      }
-    })
-    .catch(err => {
-      return res.json({ error: true });
-    });
-});
+// app.post("/password/reset/start", (req, res) => {
+//   let email = req.body.email;
+//   let subject = "code to reset your password from social network";
+//   let code = cryptoRandomString({ length: 10 });
+//   let message = code;
+//
+//   db.verifyUser(email)
+//     .then(result => {
+//       if (result.rows.length == 0) {
+//         return res.json({ error: true });
+//       } else {
+//         db.insertResetCode(email, code)
+//           .then(result => {
+//             return ses.sendEmail(email, subject, message);
+//           })
+//           .then(result => {
+//             return res.json({ reset: true });
+//           })
+//           .catch(err => {
+//             console.log("error", err);
+//             return res.json({ error: true });
+//           });
+//       }
+//     })
+//     .catch(err => {
+//       return res.json({ error: true });
+//     });
+// });
+//
+// //PASSWORD RESET - VERIFY CODE
+// app.post("/password/reset/verify", (req, res) => {
+//   let inputCode = req.body.code;
+//   let password = req.body.password;
+//   let id = req.session.userId;
+//
+//   db.verifyCode()
+//     .then(result => {
+//       const matchingitem = result.rows.filter(item => item.code === inputCode);
+//
+//       let codeDB = matchingitem[0].code;
+//       codeDB.trim();
+//       inputCode.trim();
+//
+//       if (codeDB === inputCode) {
+//         hash(password)
+//           .then(hashedPw => {
+//             password = hashedPw;
+//
+//             req.session.userID = matchingitem[0].id;
+//
+//             db.updatePassword(password, id)
+//               .then(result => {
+//                 return res.json({ verified: true });
+//               })
+//               .catch(err => {
+//                 return res.json({ error: true });
+//               });
+//           })
+//           .catch(err => {
+//             return res.json({ error: true });
+//           });
+//       } else {
+//         return res.json({ error: true });
+//       }
+//     })
+//     .catch(err => {
+//       return res.json({ error: true });
+//     });
+// });
 
 //USER
 app.get("/user", (req, res) => {
@@ -274,24 +275,24 @@ app.get("/user/profile/:id", (req, res) => {
 });
 
 //UPLOAD PROFILE PIC
-app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
-  let id = req.session.userId;
-
-  if (req.file) {
-    const name1 = "https://s3.amazonaws.com/retina-imageboard/";
-    const url = name1 + id + "/" + req.file.filename;
-
-    db.addImage(url, id)
-      .then(function(result) {
-        return res.json(url);
-      })
-      .catch(function(error) {
-        return res.json({ error: true });
-      });
-  } else {
-    return res.json({ error: true });
-  }
-});
+// app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
+//   let id = req.session.userId;
+//
+//   if (req.file) {
+//     const name1 = "https://s3.amazonaws.com/retina-imageboard/";
+//     const url = name1 + id + "/" + req.file.filename;
+//
+//     db.addImage(url, id)
+//       .then(function(result) {
+//         return res.json(url);
+//       })
+//       .catch(function(error) {
+//         return res.json({ error: true });
+//       });
+//   } else {
+//     return res.json({ error: true });
+//   }
+// });
 
 //ADD OR EDIT BIO
 app.post("/uploadbio", (req, res) => {
@@ -463,8 +464,9 @@ app.get("*", function(req, res) {
   }
 });
 
-server.listen(8080, function() {
-  console.log("server listening");
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Our app is running on port ${PORT}`);
 });
 
 // CHAT WITH SOCKET.IO
