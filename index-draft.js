@@ -1,9 +1,12 @@
 const express = require("express");
 const app = express();
 const server = require("http").Server(app);
-const io = require("socket.io")(server, {
-  origins: "localhost:8080 127.0.0.1:8080 the-exchange-network.herokuapp.com:*"
-});
+// const io = require("socket.io")(server, {
+//   origins: "localhost:8080 127.0.0.1:8080 the-exchange-network.herokuapp.com:*"
+// });
+const io = require("socket.io")(server, { origins: "localhost:8080" });
+
+const io = require("socket.io")(server, { origins: "localhost:8080" });
 const compression = require("compression");
 const db = require("./db.js");
 const { hash, compare } = require("./util/bc.js");
@@ -15,6 +18,7 @@ const secretCode = cryptoRandomString({
 });
 //const s3 = require("./s3.js");
 
+//file upload
 const multer = require("multer");
 const uidSafe = require("uid-safe");
 const path = require("path");
@@ -102,7 +106,7 @@ app.get("/logout", (req, res) => {
 app.get("/deleteaccount", async (req, res) => {
   let user_id = req.session.userId;
   let author_user_id = req.session.userId;
-  s3.delete(user_id.toString());
+  //s3.delete(user_id.toString());
   try {
     const deleteFriendInfo = await db.deleleInfoFriendship(user_id);
     const deleteMsgs = await db.deleteMsgs(user_id);
@@ -127,7 +131,7 @@ app.post("/registration/submit", (req, res) => {
     db.registerUser(first, last, email, password)
       .then(function(result) {
         req.session.userId = result.rows[0].id;
-        res.redirect("/");
+        return res.json({ error: true });
       })
       .catch(function(err) {
         return res.json({ error: true });

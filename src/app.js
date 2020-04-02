@@ -27,19 +27,18 @@ export default class App extends React.Component {
       deleteAccountCheckVisible: false
     };
 
-    //this.toggleModal = this.toggleModal.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
     this.deleteaccountcheck = this.deleteaccountcheck.bind(this);
     this.closedeleteAccountCheck = this.closedeleteAccountCheck.bind(this);
   }
 
-  //modal for uploading a new profile pic
-  // toggleModal() {
-  //     if (!this.state.uploaderVisible) {
-  //         this.setState({ uploaderVisible: true });
-  //     } else {
-  //         this.setState({ uploaderVisible: false });
-  //     }
-  // }
+  toggleModal() {
+    if (!this.state.uploaderVisible) {
+      this.setState({ uploaderVisible: true });
+    } else {
+      this.setState({ uploaderVisible: false });
+    }
+  }
 
   componentDidMount() {
     axios
@@ -102,7 +101,6 @@ export default class App extends React.Component {
               first={this.state.first}
               last={this.state.last}
               url={this.state.url}
-              toggleModal={e => this.toggleModal(e)}
             />
             <Link className="profile-section-link" to="/">
               EDIT BIO
