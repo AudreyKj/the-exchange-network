@@ -142,8 +142,8 @@ export default class Registration extends React.Component {
 
         {this.state.error_password && (
           <span className="error-register">
-            Oops, something went wrong! please make your password includes at
-            least 5 characters
+            Oops, something went wrong! please make sure your password includes
+            at least 5 characters
           </span>
         )}
       </div>

@@ -5,10 +5,6 @@ const db = spicePg(
     "postgres://postgres:postgres@localhost:5432/socialnetwork"
 );
 
-// const db =
-//   process.env.DATABASE_URL ||
-//   "postgres://postgres:postgres@localhost:5432/socialnetwork";
-
 function registerUser(first, last, email, password) {
   return db.query(
     `INSERT INTO users(first, last, email, password)

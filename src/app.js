@@ -27,18 +27,18 @@ export default class App extends React.Component {
       deleteAccountCheckVisible: false
     };
 
-    this.toggleModal = this.toggleModal.bind(this);
+    //this.toggleModal = this.toggleModal.bind(this);
     this.deleteaccountcheck = this.deleteaccountcheck.bind(this);
     this.closedeleteAccountCheck = this.closedeleteAccountCheck.bind(this);
   }
 
-  toggleModal() {
-    if (!this.state.uploaderVisible) {
-      this.setState({ uploaderVisible: true });
-    } else {
-      this.setState({ uploaderVisible: false });
-    }
-  }
+  // toggleModal() {
+  //   if (!this.state.uploaderVisible) {
+  //     this.setState({ uploaderVisible: true });
+  //   } else {
+  //     this.setState({ uploaderVisible: false });
+  //   }
+  // }
 
   componentDidMount() {
     axios

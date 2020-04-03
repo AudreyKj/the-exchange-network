@@ -5,29 +5,28 @@ import Welcome from "./welcome";
 import App from "./app";
 import { init } from "./socket";
 
-////redux boilerplate code ////
+//redux boilerplate code
 import { createStore, applyMiddleware } from "redux";
 import reduxPromise from "redux-promise";
 import { composeWithDevTools } from "redux-devtools-extension";
 import reducer from "./reducer.js";
 
 const store = createStore(
-    reducer,
-    composeWithDevTools(applyMiddleware(reduxPromise))
+  reducer,
+  composeWithDevTools(applyMiddleware(reduxPromise))
 );
-////redux boilerplate code ends here////
 
 let elem;
 
 if (location.pathname === "/welcome") {
-    elem = <Welcome />;
+  elem = <Welcome />;
 } else {
-    init(store);
-    elem = (
-        <Provider store={store}>
-            <App />
-        </Provider>
-    );
+  init(store);
+  elem = (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
 }
 
 ReactDOM.render(elem, document.querySelector("main"));

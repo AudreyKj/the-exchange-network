@@ -24,16 +24,8 @@ class Logo extends Component {
       50
     );
     this.camera.position.z = 30;
-    // this.camera = new THREE.PerspectiveCamera(
-    //     75,
-    //     width / height,
-    //     0.1,
-    //     1000
-    // );
-    // this.camera.position.set(0, 5, 400);
 
     // setup rendering
-
     this.renderer = new THREE.WebGLRenderer({
       antialias: true,
       alpha: true
@@ -46,8 +38,7 @@ class Logo extends Component {
     this.renderer.render(this.scene, this.camera);
     this.mount.appendChild(this.renderer.domElement);
 
-    // setup geo
-
+    //particles
     var particleMat = new THREE.PointsMaterial({
       color: 0xaecdd0,
       size: 0.1,

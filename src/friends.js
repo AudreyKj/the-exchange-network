@@ -7,99 +7,87 @@ import { unfriend } from "./actions.js";
 import { Link } from "react-router-dom";
 
 export default function Friends() {
-    const friends = useSelector(
-        state =>
-            state.friendsWannabes &&
-            state.friendsWannabes.filter(friend => {
-                return friend.accepted === true;
-            })
-    );
+  const friends = useSelector(
+    state =>
+      state.friendsWannabes &&
+      state.friendsWannabes.filter(friend => {
+        return friend.accepted === true;
+      })
+  );
 
-    const requesters = useSelector(
-        state =>
-            state.friendsWannabes &&
-            state.friendsWannabes.filter(friend => {
-                return friend.accepted === false;
-            })
-    );
+  const requesters = useSelector(
+    state =>
+      state.friendsWannabes &&
+      state.friendsWannabes.filter(friend => {
+        return friend.accepted === false;
+      })
+  );
 
-    const dispatch = useDispatch();
-    useEffect(() => {
-        (async () => {
-            dispatch(receiveFriendsWannabes());
-        })();
-    }, []);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    (async () => {
+      dispatch(receiveFriendsWannabes());
+    })();
+  }, []);
 
-    return (
-        <div className="friendswannabes">
-            <div className="friends-requesters-container">
-                <span className="section-title">FRIENDS</span>
-                <span className="findpeople">
-                    All your friends and friend requests other users send you
-                    are listed here. <br />
-                    <br /> Go to &nbsp;
-                    <Link to="/recentusers">find people</Link>
-                    to make new friends.
-                </span>
-                {requesters &&
-                    requesters.map(user => (
-                        <div
-                            className="friendwannabe-single-user"
-                            key={user.id}
-                        >
-                            <span className="friends-requesters">
-                                FRIEND REQUEST
-                            </span>
+  return (
+    <div className="friendswannabes">
+      <div className="friends-requesters-container">
+        <span className="section-title">FRIENDS</span>
+        <span className="friendswannabes-text">
+          All your friends and friend requests other users send you are listed
+          here. <br />
+          <br /> Go to &nbsp;
+          <Link to="/recentusers">find people</Link>
+          to make new friends.
+        </span>
+        {requesters &&
+          requesters.map(user => (
+            <div className="friendwannabe-single-user" key={user.id}>
+              <span className="friends-requesters">FRIEND REQUEST</span>
 
-                            <img
-                                className="image-friends-requesters"
-                                src={user.url || "/default-user-avatar.png"}
-                                alt={(user.first, user.last)}
-                            />
-                            <Link to={`/user/${user.id}`}>
-                                {user.first}&nbsp;
-                                {user.last}
-                            </Link>
-                            <button
-                                className="friends-accept button-friends-requesters"
-                                onClick={() =>
-                                    dispatch(acceptFriendRequest(user.id))
-                                }
-                            >
-                                Accept friend request
-                            </button>
-                        </div>
-                    ))}
+              <img
+                className="image-friends-requesters"
+                src={user.url || "/default-user-avatar.png"}
+                alt={(user.first, user.last)}
+              />
+              <Link to={`/user/${user.id}`}>
+                {user.first}&nbsp;
+                {user.last}
+              </Link>
+              <button
+                className="friends-accept button-friends-requesters"
+                onClick={() => dispatch(acceptFriendRequest(user.id))}
+              >
+                Accept friend request
+              </button>
             </div>
-            <div className="friends-requesters-container">
-                {friends &&
-                    friends.map(user => (
-                        <div
-                            className="friendwannabe-single-user"
-                            key={user.id}
-                        >
-                            <span className="friends-requesters">
-                                CURRENT FRIEND
-                            </span>
+          ))}
+      </div>
+      <div className="friends-requesters-container">
+        {friends &&
+          friends.map(user => (
+            <div className="friendwannabe-single-user" key={user.id}>
+              <span className="friends-requesters">CURRENT FRIEND</span>
 
-                            <img
-                                className="image-friends-requesters"
-                                src={user.url || "/default-user-avatar.png"}
-                                alt={(user.first, user.last)}
-                            />
-                            <Link to={`/user/${user.id}`}>
-                                {user.first}&nbsp;
-                                {user.last}
-                            </Link>
-                            <button
-                                className="friends-unfriend button-friends-requesters"
-                                onClick={() => dispatch(unfriend(user))}
-                            >
-                                End friendship
-                            </button>
-                        </div>
-                    ))}
+              <img
+                className="image-friends-requesters"
+                src={user.url || "/default-user-avatar.png"}
+                alt={(user.first, user.last)}
+              />
+              <Link to={`/user/${user.id}`}>
+                {user.first}&nbsp;
+                {user.last}
+              </Link>
+              <button
+                className="friends-unfriend button-friends-requesters"
+                onClick={() => dispatch(unfriend(user))}
+              >
+                End friendship
+              </button>
             </div>
-        </div>
-    );
+          ))}
+      </div>
+    </div>
+  );
 }

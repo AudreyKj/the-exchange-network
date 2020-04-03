@@ -1,4 +1,3 @@
-
 CREATE TABLE password_reset_codes(
     id SERIAL PRIMARY KEY,
     code VARCHAR,

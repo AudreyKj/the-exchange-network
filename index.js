@@ -1,49 +1,41 @@
 const express = require("express");
 const app = express();
 const server = require("http").Server(app);
-//const io = require("socket.io")(server, { origins: "localhost:8080" });
-// const io = require("socket.io")(server, {
-//   origins: "the-exchange-network.herokuapp.com:*"
-// });
-
-//const io = require("socket.io")(server);
-
 const io = require("socket.io").listen(server);
-
 const compression = require("compression");
 const db = require("./db.js");
 const { hash, compare } = require("./util/bc.js");
 const csurf = require("csurf");
-//const ses = require("./ses.js");
 const cryptoRandomString = require("crypto-random-string");
 const secretCode = cryptoRandomString({
   length: 6
 });
+
+//file upload for profile pic change + pw reset
+//const ses = require("./ses.js");
 //const s3 = require("./s3.js");
 
-//////////FILE UPLOAD BOILERPLATE CODE /////////////////
-const multer = require("multer");
-const uidSafe = require("uid-safe");
-const path = require("path");
-
-const diskStorage = multer.diskStorage({
-  destination: function(req, file, callback) {
-    callback(null, __dirname + "/uploads");
-  },
-  filename: function(req, file, callback) {
-    uidSafe(24).then(function(uid) {
-      callback(null, uid + path.extname(file.originalname));
-    });
-  }
-});
-
-const uploader = multer({
-  storage: diskStorage,
-  limits: {
-    fileSize: 2097152
-  }
-});
-//////////FILE UPLOAD BOILERPLATE CODE ENDS HERE/////////////////
+// const multer = require("multer");
+// const uidSafe = require("uid-safe");
+// const path = require("path");
+//
+// const diskStorage = multer.diskStorage({
+//   destination: function(req, file, callback) {
+//     callback(null, __dirname + "/uploads");
+//   },
+//   filename: function(req, file, callback) {
+//     uidSafe(24).then(function(uid) {
+//       callback(null, uid + path.extname(file.originalname));
+//     });
+//   }
+// });
+//
+// const uploader = multer({
+//   storage: diskStorage,
+//   limits: {
+//     fileSize: 2097152
+//   }
+// });
 
 app.use(compression());
 
@@ -110,7 +102,7 @@ app.get("/logout", (req, res) => {
 app.get("/deleteaccount", async (req, res) => {
   let user_id = req.session.userId;
   let author_user_id = req.session.userId;
-  s3.delete(user_id.toString());
+  //s3.delete(user_id.toString());
   try {
     const deleteFriendInfo = await db.deleleInfoFriendship(user_id);
     const deleteMsgs = await db.deleteMsgs(user_id);
@@ -475,17 +467,7 @@ server.listen(process.env.PORT || 8080, function() {
   console.log("I'm listening.");
 });
 
-// const PORT = process.env.PORT || 8080;
-// app.listen(PORT, () => {
-//   console.log(`Server listening on port ${PORT}...`);
-// });
-
-// server.listen(8080, function() {
-//   console.log("server listening");
-// });
-
 // CHAT WITH SOCKET.IO
-
 io.on("connection", function(socket) {
   if (!socket.request.session.userId) {
     return socket.disconnect(true);
