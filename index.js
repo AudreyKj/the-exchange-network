@@ -2,9 +2,13 @@ const express = require("express");
 const app = express();
 const server = require("http").Server(app);
 //const io = require("socket.io")(server, { origins: "localhost:8080" });
-const io = require("socket.io")(server, {
-  origins: "the-exchange-network.herokuapp.com:*"
-});
+// const io = require("socket.io")(server, {
+//   origins: "the-exchange-network.herokuapp.com:*"
+// });
+
+//const io = require("socket.io")(server);
+
+const io = require("socket.io").listen(server);
 
 const compression = require("compression");
 const db = require("./db.js");
@@ -467,16 +471,21 @@ app.get("*", function(req, res) {
   }
 });
 
-const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}...`);
+server.listen(process.env.PORT || 8080, function() {
+  console.log("I'm listening.");
 });
+
+// const PORT = process.env.PORT || 8080;
+// app.listen(PORT, () => {
+//   console.log(`Server listening on port ${PORT}...`);
+// });
 
 // server.listen(8080, function() {
 //   console.log("server listening");
 // });
 
 // CHAT WITH SOCKET.IO
+
 io.on("connection", function(socket) {
   if (!socket.request.session.userId) {
     return socket.disconnect(true);
