@@ -467,11 +467,14 @@ app.get("*", function(req, res) {
   }
 });
 
-//app.listen(process.env.PORT || 8080);
-
-server.listen(8080, function() {
-  console.log("server listening");
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Server listening on port ${PORT}...`);
 });
+
+// server.listen(8080, function() {
+//   console.log("server listening");
+// });
 
 // CHAT WITH SOCKET.IO
 io.on("connection", function(socket) {
