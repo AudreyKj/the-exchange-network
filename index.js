@@ -3,7 +3,7 @@ const app = express();
 const server = require("http").Server(app);
 //const io = require("socket.io")(server, { origins: "localhost:8080" });
 const io = require("socket.io")(server, {
-  origins: "localhost:8080 127.0.0.1:8080 the-exchange-network.herokuapp.com:*"
+  origins: "the-exchange-network.herokuapp.com:*"
 });
 
 const compression = require("compression");
