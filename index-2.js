@@ -1,11 +1,10 @@
 const express = require("express");
 const app = express();
 const server = require("http").Server(app);
-// const io = require("socket.io")(server, { origins: "localhost:8080" });
-const io = require("socket.io")(server, {
-  origins: "localhost:8080 127.0.0.1:8080 the-exchange-network.herokuapp.com:*"
-});
-
+// const io = require("socket.io")(server, {
+//   origins: "localhost:8080 127.0.0.1:8080 the-exchange-network.herokuapp.com:*"
+// });
+const io = require("socket.io")(server, { origins: "localhost:8080" });
 const compression = require("compression");
 const db = require("./db.js");
 const { hash, compare } = require("./util/bc.js");
@@ -17,7 +16,6 @@ const secretCode = cryptoRandomString({
 });
 //const s3 = require("./s3.js");
 
-//////////FILE UPLOAD BOILERPLATE CODE /////////////////
 const multer = require("multer");
 const uidSafe = require("uid-safe");
 const path = require("path");
@@ -39,7 +37,6 @@ const uploader = multer({
     fileSize: 2097152
   }
 });
-//////////FILE UPLOAD BOILERPLATE CODE ENDS HERE/////////////////
 
 app.use(compression());
 
@@ -131,7 +128,7 @@ app.post("/registration/submit", (req, res) => {
     db.registerUser(first, last, email, password)
       .then(function(result) {
         req.session.userId = result.rows[0].id;
-        return res.json(result);
+        res.redirect("/");
       })
       .catch(function(err) {
         return res.json({ error: true });
@@ -467,8 +464,9 @@ app.get("*", function(req, res) {
   }
 });
 
-server.listen(8080, function() {
-  console.log("server listening");
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`Our app is running on port ${PORT}`);
 });
 
 // CHAT WITH SOCKET.IO
