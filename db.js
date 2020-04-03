@@ -1,13 +1,13 @@
 const spicePg = require("spiced-pg");
 
-// const db = spicePg(
-//     process.env.DATABASE_URL ||
-//         "postgres://postgres:postgres@localhost:5432/socialnetwork"
-// );
-
-const db =
+const db = spicePg(
   process.env.DATABASE_URL ||
-  "postgres://postgres:postgres@localhost:5432/socialnetwork";
+    "postgres://postgres:postgres@localhost:5432/socialnetwork"
+);
+
+// const db =
+//   process.env.DATABASE_URL ||
+//   "postgres://postgres:postgres@localhost:5432/socialnetwork";
 
 function registerUser(first, last, email, password) {
   return db.query(
