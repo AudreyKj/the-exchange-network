@@ -29,3 +29,5 @@ Note: In development, I added features where the user could upload a custom imag
 ## Visuals
 
 ![screenshot](screenshot-socialnetwork.png)
+![screenshot](screenshot2-network.png)
+![screenshot](screenshot3-network.png)
