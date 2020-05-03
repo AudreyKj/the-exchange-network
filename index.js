@@ -176,29 +176,36 @@ cloudinary.config({
   api_secret: process.env.API_SECRET
 });
 
-app.post("/upload", uploader.single("file"), (req, res) => {
-  let id = req.session.userId;
+app.post("/upload", (req, res) => {
+  uploader.single("file")(req, res, function(err) {
+    if (err instanceof multer.MulterError) {
+      return res.json({ error: true });
+    } else if (err) {
+      return res.json({ error: true });
+    }
 
-  if (req.file) {
-    let username = req.body.username;
-    let title = req.body.title;
-    let description = req.body.description;
+    let id = req.session.userId;
 
-    cloudinary.uploader.upload(req.file.path, function(result) {
-      const url = result.secure_url;
-      console.log("url", url);
+    if (req.file) {
+      let username = req.body.username;
+      let title = req.body.title;
+      let description = req.body.description;
 
-      db.addImage(url, id)
-        .then(function(result) {
-          return res.json(url);
-        })
-        .catch(function(error) {
-          return res.json({ error: true });
-        });
-    });
-  } else {
-    return res.json({ error: true });
-  }
+      cloudinary.uploader.upload(req.file.path, function(result) {
+        const url = result.secure_url;
+
+        db.addImage(url, id)
+          .then(function(result) {
+            return res.json(url);
+          })
+          .catch(function(error) {
+            return res.json({ error: true });
+          });
+      });
+    } else {
+      return res.json({ error: true });
+    }
+  });
 });
 
 //USER

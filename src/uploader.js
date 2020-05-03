@@ -40,14 +40,18 @@ export default class Uploader extends React.Component {
       fomData.append("file", this.state.file);
     });
 
-    this.setState({ success: true });
-
     axios
       .post("/upload", fomData)
       .then(({ data }) => {
-        console.log("data", data);
-        this.props.finishedUploading(data);
-        this.setState({ uploaderVisible: false });
+        if (data.error) {
+          this.setState({ error: true });
+          return;
+        } else {
+          this.setState({ error: false });
+          this.setState({ success: true });
+          this.props.finishedUploading(data);
+          this.setState({ uploaderVisible: false });
+        }
       })
       .catch(function(error) {
         this.state({ error: true });
@@ -86,7 +90,7 @@ export default class Uploader extends React.Component {
               </form>
               {this.state.error && (
                 <span className="error">
-                  Error: please make try again with a smaller file.
+                  Error: please make try again with a file below 800kb.
                 </span>
               )}
               {this.state.success && (
