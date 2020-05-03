@@ -8,8 +8,7 @@ export default class Uploader extends React.Component {
       file: null,
       uploaderVisible: false,
       error: false,
-      success: false,
-      success: false,
+      imageUploading: false,
       inProp: false
     };
     this.handleChange = this.handleChange.bind(this);
@@ -40,15 +39,17 @@ export default class Uploader extends React.Component {
       fomData.append("file", this.state.file);
     });
 
+    this.setState({ imageUploading: true });
+
     axios
       .post("/upload", fomData)
       .then(({ data }) => {
         if (data.error) {
+          this.setState({ imageUploading: false });
           this.setState({ error: true });
           return;
         } else {
           this.setState({ error: false });
-          this.setState({ success: true });
           this.props.finishedUploading(data);
           this.setState({ uploaderVisible: false });
         }
@@ -93,10 +94,8 @@ export default class Uploader extends React.Component {
                   Error: please make try again with a file below 800kb.
                 </span>
               )}
-              {this.state.success && (
-                <span className="success">
-                  Success: your image is being uploaded!
-                </span>
+              {this.state.imageUploading && (
+                <span className="image-uplaoding">image uploading...</span>
               )}
             </div>
           </div>

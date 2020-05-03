@@ -32,14 +32,17 @@ all the users (public) or only visible to their friends (private).
 ## Design - color palette
 
 ![screenshot](palette.jpg)
+
+<p align="center">
 --> black, #333333 </br>
 --> blue, #00909e </br>
 --> grey, #d6d6d6 </br>
 --> white, #ffffff </br>
+</p>
 
 ## Visuals
 
 ![screenshot](screenshot_1.png)
-![screenshot](screenshot_3.png)
 ![screenshot](screenshot_4.png)
 ![screenshot](screenshot_5.png)
+![screenshot](screenshot_3.png)

@@ -52,13 +52,13 @@ a.link-menu:hover {
   }
 }
 
-@media (max-width: 500px) {
+/* @media (max-width: 500px) {
   a.link-menu,
   a.link-menu:visited,
   a.link-menu:hover {
     padding: 0.4em 0.8em 0.2em;
   }
-}
+} */
 
 /* ERROR */
 span.error {
@@ -67,7 +67,7 @@ span.error {
   text-align: center;
 }
 
-span.success {
+span.image-uplaoding {
   margin-top: 10px;
   color: #333;
   text-align: center;
