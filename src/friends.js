@@ -37,9 +37,11 @@ export default function Friends() {
         <span className="friendswannabes-text">
           All your friends and friend requests other users send you are listed
           here. <br />
-          <br /> Go to &nbsp;
-          <Link to="/recentusers">find people</Link>
-          to make new friends.
+          <br /> Go to
+          <Link className="link-menu" to="/recentusers">
+            find people
+          </Link>
+          &nbsp; to make new friends.
         </span>
         {requesters &&
           requesters.map(user => (
@@ -72,7 +74,7 @@ export default function Friends() {
 
               <img
                 className="image-friends-requesters"
-                src={user.url || "/default-user-avatar.png"}
+                src={"/default-user-avatar.png"}
                 alt={(user.first, user.last)}
               />
               <Link to={`/user/${user.id}`}>

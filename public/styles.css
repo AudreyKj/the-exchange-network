@@ -6,25 +6,41 @@ body {
 }
 
 /* GENERAL STYLES */
+a,
+a:visited {
+  color: #333;
+  text-decoration: none;
+}
+
+a:hover {
+  color: white;
+  text-decoration: none;
+}
+
 form {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-textarea {
-  box-shadow: 0 0 10px rgb(255, 255, 255);
-}
-
-a,
-a:visited {
+a.link-menu,
+a.link-menu:visited {
   text-decoration: none;
   color: #333;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  min-width: 1.5em;
+  border-radius: 10em;
+  background: #32b6e6;
+  border: 1px solid transparent;
+  text-transform: uppercase;
+  padding: 0.6em 0.8em 0.6em;
+  margin-top: 15px;
+  box-shadow: 1px 1px 10px -5px #000;
 }
 
-a:hover {
+a.link-menu:hover {
   color: white;
-  text-decoration: none;
 }
 
 /* ERROR */
@@ -223,6 +239,16 @@ label.exchange {
 
 .exchange-input {
   margin-top: 5px;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  min-width: 1.5em;
+  background: #ffffff82;
+  border: 1px solid transparent;
+  text-transform: uppercase;
+  margin: 0.15em 0.1em;
+  padding: 0.5em 1em 0.4em;
 }
 
 button.exchange {
@@ -267,13 +293,13 @@ div.exchange-wrapper {
 }
 
 form.form-exchange {
-  border: 1px solid white;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 1);
   padding: 20px 40px 20px 40px;
   display: flex;
   align-items: center;
   flex-direction: column;
   margin-bottom: 30px;
+  border-radius: 12px;
+  box-shadow: 1px 1px 10px -5px #000;
 
   text-align: center;
 }
@@ -297,6 +323,7 @@ div.exchange-list {
   padding: 10px;
   background-color: #ffffffa3;
   max-width: 500px;
+  border-radius: 12px;
 }
 
 .newexchange {
@@ -328,11 +355,11 @@ div.chat {
   height: 500px;
   overflow-y: scroll;
   width: 500px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 1);
   padding: 0 20px 20px 20px;
   font-size: 0.9rem;
-  border: 1px solid white;
+  border-radius: 12px;
   margin-top: 45px;
+  box-shadow: 1px 1px 10px -5px #000;
 }
 
 @media (max-width: 950px) {
@@ -355,7 +382,16 @@ div.message {
 }
 
 textarea.chat-textarea {
-  margin-top: 10px;
+  margin-top: 20px;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  min-width: 1.5em;
+  background: #ffffff82;
+  border: 1px solid transparent;
+  text-transform: uppercase;
+  padding: 0.5em 1em 0.4em;
 }
 
 span.chat-date {
@@ -409,15 +445,24 @@ div.image-info-msg {
 div.links-header {
   position: absolute;
   right: 20px;
-  top: 25px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 1);
   padding: 15px 35px 15px 15px;
   text-align: center;
   font-size: 1rem;
   text-transform: uppercase;
   font-style: italic;
-  background-color: #32b6e6;
-  border: 1px solid white;
+}
+
+@media (max-width: 600px) {
+  div.links-header {
+    right: 0;
+    top: 0;
+    padding-top: 25px;
+    padding-right: 25px;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 
 .link-menu {
@@ -447,14 +492,19 @@ span.profile-section-link:hover {
 
 button,
 button.friend-button {
-  background-color: lightgrey;
-  font-size: 0.9rem;
-  box-shadow: inset 0 -0.6em 1em -0.35em rgba(0, 0, 0, 0.17),
-    inset 0 0.6em 2em -0.3em rgba(255, 255, 255, 0.15),
-    inset 0 0 0em 0.05em rgba(255, 255, 255, 0.12);
-  border: 1px solid white;
   cursor: pointer;
-  padding: 15px;
+  /* padding: 15px; */
+  border-radius: 12px;
+  color: #333;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  min-width: 1.5em;
+  border-radius: 10em;
+  background: #ffffff;
+  border: 1px solid transparent;
+  text-transform: uppercase;
+  padding: 0.6em 0.8em 0.6em;
+  box-shadow: 1px 1px 10px -5px #000;
   outline: none;
 }
 
@@ -482,13 +532,20 @@ div.profile-section {
   right: 20px;
   top: 120px;
   padding: 30px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 1);
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   text-align: right;
   background-color: #aecdd0;
-  border: 1px solid white;
+  border-radius: 12px;
+  box-shadow: 1px 1px 10px -5px #000;
+}
+
+@media (max-width: 600px) {
+  div.profile-section {
+    top: 180px;
+    margin-bottom: 20px;
+  }
 }
 
 /* PROFILE */
@@ -530,7 +587,6 @@ div.other-profiles {
 div.profile {
   font-size: 1.2rem;
   text-align: center;
-  text-shadow: rgba(255, 255, 255, 0.5) 0px 3px 3px;
   position: absolute;
   top: 25%;
   display: flex;
@@ -545,7 +601,7 @@ div.bio-editing-section {
   width: 100%;
   position: absolute;
   text-align: center;
-  top: 50%;
+  top: 45%;
   margin-top: 2rem;
 }
 
@@ -553,7 +609,6 @@ span.bio {
   margin-top: 20px;
   margin-bottom: 20px;
   color: #ad4f25;
-  text-shadow: rgba(255, 255, 255, 0.5) 0px 3px 3px;
   font-style: italic;
   display: block;
   text-align: center;
@@ -578,8 +633,9 @@ div.bio {
 
 button.addBio,
 button.editbio {
-  background-color: lightgrey;
+  background-color: white;
   font-size: 1rem;
+  margin-top: 1.5rem;
 }
 
 div.bioeditor {
@@ -600,8 +656,20 @@ form.bioeditor-form {
 }
 
 textarea.bioeditor-textarea {
+  margin-top: 5px;
+  display: inline-block;
+  vertical-align: top;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  min-width: 1.5em;
+  background: #ffffff82;
+  border: 1px solid transparent;
+  text-transform: uppercase;
+  margin-top: 0.15em;
+  margin-left: 0.1em;
+  margin-right: 0.1em;
   margin-bottom: 1rem;
-  box-shadow: 0 0 10px rgb(255, 255, 255);
+  padding: 0.5em 1em 0.4em;
 }
 
 /* MODALS */
@@ -806,11 +874,12 @@ span.section-title {
 }
 
 div.recent-users {
-  box-shadow: 0 0 10px rgba(255, 255, 255, 1);
   padding: 10px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  border-radius: 12px;
+  border: 1px dashed white;
 }
 
 div.otherprofiles-wrapper {
@@ -870,7 +939,6 @@ span.friendswannabes-text {
   text-align: center;
   font-size: 1rem;
   color: black;
-  text-shadow: rgba(255, 255, 255, 0.5) 0px 3px 3px;
   text-transform: uppercase;
   font-style: italic;
   width: 100%;

@@ -109,6 +109,14 @@ function deleteExchanges(author_user_id) {
   );
 }
 
+function deleteExchangesPublic(author_user_id) {
+  return db.query(
+    `DELETE FROM exchange_public
+        WHERE author_user_id = $1`,
+    [author_user_id]
+  );
+}
+
 function deleteMsgs(user_id) {
   return db.query(
     `DELETE FROM messages
@@ -151,6 +159,14 @@ function getInfoForMsg(user_id) {
   return db.query(`SELECT  first, last FROM users WHERE id = $1`, [user_id]);
 }
 
+function insertExchangePublic(title, city, description, author_user_id) {
+  return db.query(
+    `INSERT INTO exchange_public (title, city, description, author_user_id)
+VALUES ($1, $2, $3, $4) RETURNING *`,
+    [title, city, description, author_user_id]
+  );
+}
+
 function insertExchange(title, city, description, author_user_id) {
   return db.query(
     `INSERT INTO exchange(title, city, description, author_user_id)
@@ -165,7 +181,16 @@ function findInfoForExchange(author_user_id) {
   ]);
 }
 
-function getLastExchanges(user_id) {
+function getLastExchangesPublic() {
+  return db.query(`SELECT users.first, users.last, exchange_public.author_user_id, exchange_public.id,
+  exchange_public.title, exchange_public.description, exchange_public.city, exchange_public.created_at
+  FROM exchange_public
+  LEFT JOIN users
+  ON (users.id = exchange_public.author_user_id)
+  ORDER BY exchange_public.id DESC LIMIT 10`);
+}
+
+function getLastExchangesPrivate(user_id) {
   return db.query(
     `SELECT DISTINCT friendships.receiver_id, friendships.sender_id, friendships.accepted, users.id,
         users.first, users.last, exchange.author_user_id, exchange.id, exchange.title,
@@ -207,6 +232,9 @@ exports.storeNewMessage = storeNewMessage;
 exports.getInfoForMsg = getInfoForMsg;
 exports.deleteMsgs = deleteMsgs;
 exports.deleteExchanges = deleteExchanges;
+exports.deleteExchangesPublic = deleteExchangesPublic;
 exports.insertExchange = insertExchange;
-exports.getLastExchanges = getLastExchanges;
+exports.getLastExchangesPrivate = getLastExchangesPrivate;
+exports.getLastExchangesPublic = getLastExchangesPublic;
 exports.findInfoForExchange = findInfoForExchange;
+exports.insertExchangePublic = insertExchangePublic;

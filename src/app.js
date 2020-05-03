@@ -27,18 +27,9 @@ export default class App extends React.Component {
       deleteAccountCheckVisible: false
     };
 
-    //this.toggleModal = this.toggleModal.bind(this);
     this.deleteaccountcheck = this.deleteaccountcheck.bind(this);
     this.closedeleteAccountCheck = this.closedeleteAccountCheck.bind(this);
   }
-
-  // toggleModal() {
-  //   if (!this.state.uploaderVisible) {
-  //     this.setState({ uploaderVisible: true });
-  //   } else {
-  //     this.setState({ uploaderVisible: false });
-  //   }
-  // }
 
   componentDidMount() {
     axios
@@ -102,7 +93,7 @@ export default class App extends React.Component {
               last={this.state.last}
               url={this.state.url}
             />
-            <Link className="profile-section-link" to="/">
+            <Link className="edit-bio-profile-section" to="/">
               EDIT BIO
             </Link>
 
@@ -110,7 +101,7 @@ export default class App extends React.Component {
               className="profile-section-link"
               onClick={this.deleteaccountcheck}
             >
-              DELETE ACCOUT
+              DELETE ACCOUNT
             </span>
 
             <span className="profile-section-link" onClick={this.logout}>

@@ -11,32 +11,6 @@ const secretCode = cryptoRandomString({
   length: 6
 });
 
-//file upload for profile pic change + pw reset
-//const ses = require("./ses.js");
-//const s3 = require("./s3.js");
-
-// const multer = require("multer");
-// const uidSafe = require("uid-safe");
-// const path = require("path");
-//
-// const diskStorage = multer.diskStorage({
-//   destination: function(req, file, callback) {
-//     callback(null, __dirname + "/uploads");
-//   },
-//   filename: function(req, file, callback) {
-//     uidSafe(24).then(function(uid) {
-//       callback(null, uid + path.extname(file.originalname));
-//     });
-//   }
-// });
-//
-// const uploader = multer({
-//   storage: diskStorage,
-//   limits: {
-//     fileSize: 2097152
-//   }
-// });
-
 app.use(compression());
 
 app.use(express.static("./public"));
@@ -102,11 +76,13 @@ app.get("/logout", (req, res) => {
 app.get("/deleteaccount", async (req, res) => {
   let user_id = req.session.userId;
   let author_user_id = req.session.userId;
-  //s3.delete(user_id.toString());
   try {
     const deleteFriendInfo = await db.deleleInfoFriendship(user_id);
     const deleteMsgs = await db.deleteMsgs(user_id);
     const deleteExchanges = await db.deleteExchanges(author_user_id);
+    const deleteExchangesPublic = await db.deleteExchangesPublic(
+      author_user_id
+    );
     const deleteAccount = await db.deleleAccount(user_id);
     req.session.userId = null;
     res.redirect("/welcome");
@@ -167,77 +143,6 @@ app.post("/login/submit", (req, res) => {
     });
 });
 
-//PASSWORD RESET - VERIFY EMAIL
-// app.post("/password/reset/start", (req, res) => {
-//   let email = req.body.email;
-//   let subject = "code to reset your password from social network";
-//   let code = cryptoRandomString({ length: 10 });
-//   let message = code;
-//
-//   db.verifyUser(email)
-//     .then(result => {
-//       if (result.rows.length == 0) {
-//         return res.json({ error: true });
-//       } else {
-//         db.insertResetCode(email, code)
-//           .then(result => {
-//             return ses.sendEmail(email, subject, message);
-//           })
-//           .then(result => {
-//             return res.json({ reset: true });
-//           })
-//           .catch(err => {
-//             console.log("error", err);
-//             return res.json({ error: true });
-//           });
-//       }
-//     })
-//     .catch(err => {
-//       return res.json({ error: true });
-//     });
-// });
-//
-// //PASSWORD RESET - VERIFY CODE
-// app.post("/password/reset/verify", (req, res) => {
-//   let inputCode = req.body.code;
-//   let password = req.body.password;
-//   let id = req.session.userId;
-//
-//   db.verifyCode()
-//     .then(result => {
-//       const matchingitem = result.rows.filter(item => item.code === inputCode);
-//
-//       let codeDB = matchingitem[0].code;
-//       codeDB.trim();
-//       inputCode.trim();
-//
-//       if (codeDB === inputCode) {
-//         hash(password)
-//           .then(hashedPw => {
-//             password = hashedPw;
-//
-//             req.session.userID = matchingitem[0].id;
-//
-//             db.updatePassword(password, id)
-//               .then(result => {
-//                 return res.json({ verified: true });
-//               })
-//               .catch(err => {
-//                 return res.json({ error: true });
-//               });
-//           })
-//           .catch(err => {
-//             return res.json({ error: true });
-//           });
-//       } else {
-//         return res.json({ error: true });
-//       }
-//     })
-//     .catch(err => {
-//       return res.json({ error: true });
-//     });
-// });
-
 //USER
 app.get("/user", (req, res) => {
   let id = req.session.userId;
@@ -272,26 +177,6 @@ app.get("/user/profile/:id", (req, res) => {
       return res.sendStatus(500);
     });
 });
-
-//UPLOAD PROFILE PIC
-// app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
-//   let id = req.session.userId;
-//
-//   if (req.file) {
-//     const name1 = "https://s3.amazonaws.com/retina-imageboard/";
-//     const url = name1 + id + "/" + req.file.filename;
-//
-//     db.addImage(url, id)
-//       .then(function(result) {
-//         return res.json(url);
-//       })
-//       .catch(function(error) {
-//         return res.json({ error: true });
-//       });
-//   } else {
-//     return res.json({ error: true });
-//   }
-// });
 
 //ADD OR EDIT BIO
 app.post("/uploadbio", (req, res) => {
@@ -366,7 +251,7 @@ app.post("/make-friend-request/:id", (req, res) => {
     });
 });
 
-//RETRIVE FRIENDS AND WANNABES
+//RETRIVE FRIENDS AND FRIEND REQUESTS
 app.get("/friends-wannabes", (req, res) => {
   let user_id = req.session.userId;
 
@@ -379,7 +264,7 @@ app.get("/friends-wannabes", (req, res) => {
     });
 });
 
-//ACCEPT FRIEND REQUEST
+//ACCEPT FRIEND REQUEST - FRIEND PAGE
 app.post("/accept-friend-request", (req, res) => {
   let otherUser_id = req.body.user;
   let user_id = req.session.userId;
@@ -393,7 +278,35 @@ app.post("/accept-friend-request", (req, res) => {
     });
 });
 
-//END FRIENDSHIP OR CANCEL FRIEND REQUEST
+//ACCEPT FRIEND REQUEST - FIND PEOPLE PAGE
+app.post("/accept-friend-request/:otherUser_id", (req, res) => {
+  let otherUser_id = req.params.otherUser_id;
+  let user_id = req.session.userId;
+
+  db.acceptFriendRequest(otherUser_id, user_id)
+    .then(function(result) {
+      return res.json(result.rows[0]);
+    })
+    .catch(function(error) {
+      console.log("error in accept friend request", error);
+    });
+});
+
+//END FRIENDSHIP OR CANCEL FRIEND REQUEST - FIND PEOPLE PAGE
+app.post("/end-friendship/:otherUser_id", (req, res) => {
+  let otherUser_id = req.params.otherUser_id;
+  let user_id = req.session.userId;
+
+  db.endFriendship(otherUser_id, user_id)
+    .then(function(result) {
+      return res.json(otherUser_id);
+    })
+    .catch(function(error) {
+      console.log("error in end friendship", error);
+    });
+});
+
+//END FRIENDSHIP OR CANCEL FRIEND REQUEST - FRIEND PAGE
 app.post("/end-friendship", (req, res) => {
   let otherUser_id = req.body.user.id;
   let user_id = req.session.userId;
@@ -407,28 +320,43 @@ app.post("/end-friendship", (req, res) => {
     });
 });
 
-//GETTING EXCHANGES POSTS
-//POSTS ARE NOT DISPLAYED IF USER AND AUTHOR ARE NOT FRIENDS
+//GETTING PRIVATE EXCHANGES POSTS
 app.get("/getexchanges", (req, res) => {
   let user_id = req.session.userId;
 
-  db.getLastExchanges(user_id)
-    .then(function(result) {
+  db.getLastExchangesPublic()
+    .then(result => {
       let data = [];
-      for (let i = 0; i < result.rows.length; i++) {
-        if (
-          result.rows[i].author_user_id === user_id ||
-          result.rows[i].receiver_id === user_id ||
-          result.rows[i].sender_id === user_id
-        ) {
-          data.push(result.rows[i]);
-        }
-      }
 
-      return res.json(data);
+      data.push(result.rows);
+
+      db.getLastExchangesPrivate(user_id)
+        .then(function(result) {
+          for (let i = 0; i < result.rows.length; i++) {
+            if (
+              result.rows[i].author_user_id === user_id ||
+              result.rows[i].receiver_id === user_id ||
+              result.rows[i].sender_id === user_id
+            ) {
+              data.push(result.rows[i]);
+            }
+          }
+
+          console.log("data", data);
+          if (data.length === 0) {
+            return;
+          } else {
+            const flatten = data.flat();
+            console.log("flatten", flatten);
+            return res.json(flatten);
+          }
+        })
+        .catch(function(error) {
+          console.log("error - get/last exchanges - private", error);
+        });
     })
-    .catch(function(error) {
-      console.log("error in getting last exchanges", error);
+    .catch(error => {
+      console.log("error - get/last exchanges", error);
     });
 });
 
@@ -436,23 +364,43 @@ app.get("/getexchanges", (req, res) => {
 app.post("/postexchange", (req, res) => {
   let author_user_id = req.session.userId;
   const { title, city, description } = req.body;
+  console.log("req.body", req.body);
 
-  db.insertExchange(title, city, description, author_user_id)
-    .then(function(result) {
-      const data = result.rows[0];
-      db.findInfoForExchange(author_user_id)
-        .then(function(result) {
-          const infoExchange = result.rows[0];
-          const fullInfo = { ...data, ...infoExchange };
-          return res.json(fullInfo);
-        })
-        .catch(function(error) {
-          return res.json({ error: true });
-        });
-    })
-    .catch(function(error) {
-      return res.json({ error: true });
-    });
+  if (req.body.privacy === "onlyFriends") {
+    db.insertExchange(title, city, description, author_user_id)
+      .then(function(result) {
+        const data = result.rows[0];
+        db.findInfoForExchange(author_user_id)
+          .then(function(result) {
+            const infoExchange = result.rows[0];
+            const fullInfo = { ...data, ...infoExchange };
+            return res.json(fullInfo);
+          })
+          .catch(function(error) {
+            return res.json({ error: true });
+          });
+      })
+      .catch(function(error) {
+        return res.json({ error: true });
+      });
+  } else if (req.body.privacy === "public") {
+    db.insertExchangePublic(title, city, description, author_user_id)
+      .then(function(result) {
+        const data = result.rows[0];
+        db.findInfoForExchange(author_user_id)
+          .then(function(result) {
+            const infoExchange = result.rows[0];
+            const fullInfo = { ...data, ...infoExchange };
+            return res.json(fullInfo);
+          })
+          .catch(function(error) {
+            return res.json({ error: true });
+          });
+      })
+      .catch(function(error) {
+        return res.json({ error: true });
+      });
+  }
 });
 
 app.get("*", function(req, res) {
@@ -503,3 +451,120 @@ io.on("connection", function(socket) {
       .catch(error => console.log("error in storeNewMessage", error));
   });
 });
+
+// FILE UPLOAD FOR PROFILE PIC + RESET CODE BY EMAIL with AWS (not added in production)
+//const ses = require("./ses.js");
+//const s3 = require("./s3.js");
+
+// const multer = require("multer");
+// const uidSafe = require("uid-safe");
+// const path = require("path");
+//
+// const diskStorage = multer.diskStorage({
+//   destination: function(req, file, callback) {
+//     callback(null, __dirname + "/uploads");
+//   },
+//   filename: function(req, file, callback) {
+//     uidSafe(24).then(function(uid) {
+//       callback(null, uid + path.extname(file.originalname));
+//     });
+//   }
+// });
+//
+// const uploader = multer({
+//   storage: diskStorage,
+//   limits: {
+//     fileSize: 2097152
+//   }
+// });
+
+//UPLOAD PROFILE PIC
+// app.post("/upload", uploader.single("file"), s3.upload, (req, res) => {
+//   let id = req.session.userId;
+//
+//   if (req.file) {
+//     const name1 = "https://s3.amazonaws.com/retina-imageboard/";
+//     const url = name1 + id + "/" + req.file.filename;
+//
+//     db.addImage(url, id)
+//       .then(function(result) {
+//         return res.json(url);
+//       })
+//       .catch(function(error) {
+//         return res.json({ error: true });
+//       });
+//   } else {
+//     return res.json({ error: true });
+//   }
+// });
+
+//PASSWORD RESET - VERIFY EMAIL
+// app.post("/password/reset/start", (req, res) => {
+//   let email = req.body.email;
+//   let subject = "code to reset your password from social network";
+//   let code = cryptoRandomString({ length: 10 });
+//   let message = code;
+//
+//   db.verifyUser(email)
+//     .then(result => {
+//       if (result.rows.length == 0) {
+//         return res.json({ error: true });
+//       } else {
+//         db.insertResetCode(email, code)
+//           .then(result => {
+//             return ses.sendEmail(email, subject, message);
+//           })
+//           .then(result => {
+//             return res.json({ reset: true });
+//           })
+//           .catch(err => {
+//             console.log("error", err);
+//             return res.json({ error: true });
+//           });
+//       }
+//     })
+//     .catch(err => {
+//       return res.json({ error: true });
+//     });
+// });
+//
+// //PASSWORD RESET - VERIFY CODE
+// app.post("/password/reset/verify", (req, res) => {
+//   let inputCode = req.body.code;
+//   let password = req.body.password;
+//   let id = req.session.userId;
+//
+//   db.verifyCode()
+//     .then(result => {
+//       const matchingitem = result.rows.filter(item => item.code === inputCode);
+//
+//       let codeDB = matchingitem[0].code;
+//       codeDB.trim();
+//       inputCode.trim();
+//
+//       if (codeDB === inputCode) {
+//         hash(password)
+//           .then(hashedPw => {
+//             password = hashedPw;
+//
+//             req.session.userID = matchingitem[0].id;
+//
+//             db.updatePassword(password, id)
+//               .then(result => {
+//                 return res.json({ verified: true });
+//               })
+//               .catch(err => {
+//                 return res.json({ error: true });
+//               });
+//           })
+//           .catch(err => {
+//             return res.json({ error: true });
+//           });
+//       } else {
+//         return res.json({ error: true });
+//       }
+//     })
+//     .catch(err => {
+//       return res.json({ error: true });
+//     });
+// });
