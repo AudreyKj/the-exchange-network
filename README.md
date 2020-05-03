@@ -31,7 +31,7 @@ all the users (public) or only visible to their friends (private).
 
 #Design - color palette
 
-![screenshot](socialnetwork_palette.png)
+![screenshot](socialnetwork_palette.jpg)
 
 ## Visuals
 
