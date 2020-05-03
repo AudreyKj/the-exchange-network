@@ -29,6 +29,10 @@ all the users (public) or only visible to their friends (private).
 
 ## Visuals
 
-![screenshot](screenshot-socialnetwork.png)
-![screenshot](screenshot2-network.png)
-![screenshot](screenshot3-network.png)
+![screenshot](screenshot_1.png)
+![screenshot](screenshot_2.png)
+![screenshot](screenshot_3.png)
+![screenshot](screenshot_4.png)
+![screenshot](screenshot_5.png)
+![screenshot](screenshot_6.png)
+![screenshot](screenshot_7.png)
