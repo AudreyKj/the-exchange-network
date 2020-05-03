@@ -378,7 +378,7 @@ app.post("/end-friendship", (req, res) => {
     });
 });
 
-//GETTING PRIVATE EXCHANGES POSTS
+//GETTING  EXCHANGES POSTS
 app.get("/getexchanges", (req, res) => {
   let user_id = req.session.userId;
 
