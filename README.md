@@ -36,8 +36,8 @@ all the users (public) or only visible to their friends (private).
 <p align="center">
 --> black, #333333 </br>
 --> blue, #00909e </br>
---> grey, #d6d6d6 </br>
---> white, #ffffff </br>
+--> light grey, #d6d6d6 </br>
+--> grey, #aaaaaa </br>
 </p>
 </p>
 
