@@ -35,8 +35,7 @@ export default function Friends() {
       <div className="friends-requesters-container">
         <span className="section-title">FRIENDS</span>
         <span className="friendswannabes-text">
-          All your friends and friend requests other users send you are listed
-          here. <br />
+          All your friends and requests are listed here. <br />
           <br /> Go to
           <Link className="link-menu" to="/recentusers">
             find people

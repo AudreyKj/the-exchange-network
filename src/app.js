@@ -27,6 +27,7 @@ export default class App extends React.Component {
       deleteAccountCheckVisible: false
     };
 
+    this.toggleModal = this.toggleModal.bind(this);
     this.deleteaccountcheck = this.deleteaccountcheck.bind(this);
     this.closedeleteAccountCheck = this.closedeleteAccountCheck.bind(this);
   }
@@ -40,6 +41,14 @@ export default class App extends React.Component {
       .catch(function(error) {
         console.log("error in componentDidMount App", error);
       });
+  }
+
+  toggleModal() {
+    if (!this.state.uploaderVisible) {
+      this.setState({ uploaderVisible: true });
+    } else {
+      this.setState({ uploaderVisible: false });
+    }
   }
 
   logout() {
@@ -92,10 +101,18 @@ export default class App extends React.Component {
               first={this.state.first}
               last={this.state.last}
               url={this.state.url}
+              toggleModal={e => this.toggleModal(e)}
             />
             <Link className="edit-bio-profile-section" to="/">
               EDIT BIO
             </Link>
+
+            <span
+              className="profile-section-link"
+              onClick={e => this.toggleModal(e)}
+            >
+              PROFILE PIC
+            </span>
 
             <span
               className="profile-section-link"
@@ -223,6 +240,16 @@ export default class App extends React.Component {
             />
           </div>
         </BrowserRouter>
+
+        {this.state.uploaderVisible && (
+          <Uploader
+            finishedUploading={newUrl =>
+              this.setState({
+                url: newUrl
+              })
+            }
+          />
+        )}
       </>
     );
   }

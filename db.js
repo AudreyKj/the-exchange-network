@@ -187,7 +187,7 @@ function getLastExchangesPublic() {
   FROM exchange_public
   LEFT JOIN users
   ON (users.id = exchange_public.author_user_id)
-  ORDER BY exchange_public.id DESC LIMIT 10`);
+  ORDER BY exchange_public.id DESC LIMIT 20`);
 }
 
 function getLastExchangesPrivate(user_id) {
@@ -205,7 +205,7 @@ function getLastExchangesPrivate(user_id) {
         OR (users.id = exchange.author_user_id AND exchange.author_user_id = friendships.receiver_id
           AND friendships.sender_id = $1 AND friendships.accepted = true)
         OR (exchange.author_user_id = users.id)
-        ORDER BY exchange.id DESC LIMIT 10`,
+        ORDER BY exchange.id DESC LIMIT 20`,
     [user_id]
   );
 }

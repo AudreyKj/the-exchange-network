@@ -65,6 +65,7 @@ export default function Exchange() {
         <form className="form-exchange">
           EXCHANGE SERVICES, LANGUAGES, OR SKILLS WITH OTHER USERS!
           <br />
+          <br />
           <label className="exchange" htmlFor="title">
             ECHANGE TYPE
           </label>
@@ -90,7 +91,7 @@ export default function Exchange() {
             required
           />
           <label className="exchange" htmlFor="title">
-            PRIVATE POST (only friends)
+            PRIVATE POST
           </label>
           <input
             type="radio"

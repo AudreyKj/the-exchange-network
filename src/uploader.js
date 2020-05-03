@@ -1,9 +1,6 @@
 import React from "react";
 import axios from "./axios";
 
-//uploader that enables users to upload a profile pic using AWS
-//feature not included in production
-
 export default class Uploader extends React.Component {
   constructor(props) {
     super(props);
@@ -11,6 +8,7 @@ export default class Uploader extends React.Component {
       file: null,
       uploaderVisible: false,
       error: false,
+      success: false,
       success: false,
       inProp: false
     };
@@ -41,6 +39,8 @@ export default class Uploader extends React.Component {
     this.setState({ file: event.target.files[0] }, () => {
       fomData.append("file", this.state.file);
     });
+
+    this.setState({ success: true });
 
     axios
       .post("/upload", fomData)
@@ -86,6 +86,11 @@ export default class Uploader extends React.Component {
               {this.state.error && (
                 <span className="error">
                   Error: please make try again with a smaller file.
+                </span>
+              )}
+              {this.state.success && (
+                <span className="success">
+                  Success: your image is being uploaded!
                 </span>
               )}
             </div>

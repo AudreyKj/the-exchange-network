@@ -13,7 +13,7 @@ a:visited {
 }
 
 a:hover {
-  color: white;
+  color: #333;
   text-decoration: none;
 }
 
@@ -26,27 +26,50 @@ form {
 a.link-menu,
 a.link-menu:visited {
   text-decoration: none;
-  color: #333;
+  color: #fff;
   font-size: 1rem;
   letter-spacing: 0.04em;
   min-width: 1.5em;
   border-radius: 10em;
-  background: #32b6e6;
+  background: #333;
   border: 1px solid transparent;
   text-transform: uppercase;
   padding: 0.6em 0.8em 0.6em;
   margin-top: 15px;
   box-shadow: 1px 1px 10px -5px #000;
+  z-index: 1000;
 }
 
 a.link-menu:hover {
-  color: white;
+  color: #333;
+}
+
+@media (max-width: 1200px) {
+  a.link-menu,
+  a.link-menu:visited,
+  a.link-menu:hover {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 500px) {
+  a.link-menu,
+  a.link-menu:visited,
+  a.link-menu:hover {
+    padding: 0.4em 0.8em 0.2em;
+  }
 }
 
 /* ERROR */
 span.error {
   margin-top: 10px;
   color: red;
+  text-align: center;
+}
+
+span.success {
+  margin-top: 10px;
+  color: #333;
   text-align: center;
 }
 
@@ -66,13 +89,24 @@ div.shape-container {
 }
 
 h1.welcome {
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: black;
   text-shadow: rgba(255, 255, 255, 0.5) 0px 3px 3px;
   text-transform: uppercase;
   font-style: italic;
   text-align: center;
   margin-bottom: 15px;
+}
+
+span.welcome {
+  font-size: 2.5rem;
+  color: black;
+  text-shadow: rgba(255, 255, 255, 0.5) 0px 3px 3px;
+  text-transform: uppercase;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 15px;
+  display: block;
 }
 
 span.network-motto {
@@ -269,19 +303,31 @@ div.exchange {
 
 @media (max-width: 830px) {
   div.exchange {
-    margin-top: 45%;
+    font-size: 0.7rem;
   }
 }
 
 @media (max-width: 800px) {
   div.exchange {
+    margin-top: 50%;
+  }
+}
+
+@media (max-width: 700px) {
+  div.exchange {
     margin-top: 60%;
   }
 }
 
-@media (max-width: 620px) {
+@media (max-width: 615px) {
   div.exchange {
     margin-top: 75%;
+  }
+}
+
+@media (max-width: 530px) {
+  div.exchange {
+    margin-top: 130%;
   }
 }
 
@@ -299,7 +345,7 @@ form.form-exchange {
   flex-direction: column;
   margin-bottom: 30px;
   border-radius: 12px;
-  box-shadow: 1px 1px 10px -5px #000;
+  border: 1px dashed white;
 
   text-align: center;
 }
@@ -341,7 +387,7 @@ div.chat-wrapper {
 
 @media (max-width: 800px) {
   div.chat-wrapper {
-    margin-top: 40%;
+    margin-top: 25%;
   }
 }
 
@@ -359,18 +405,18 @@ div.chat {
   font-size: 0.9rem;
   border-radius: 12px;
   margin-top: 45px;
-  box-shadow: 1px 1px 10px -5px #000;
+  border: 1px dashed white;
 }
 
 @media (max-width: 950px) {
   div.chat {
-    width: 300px;
+    width: 500px;
   }
 }
 
 @media (max-width: 500px) {
   div.chat {
-    width: auto;
+    width: 300px;
   }
 }
 
@@ -394,6 +440,12 @@ textarea.chat-textarea {
   padding: 0.5em 1em 0.4em;
 }
 
+@media (max-width: 950px) {
+  textarea.chat-textarea {
+    font-size: 0.8rem;
+  }
+}
+
 span.chat-date {
   font-style: italic;
 }
@@ -410,19 +462,7 @@ span.chat-title {
 
 @media (max-width: 950px) {
   span.chat-title {
-    margin-top: 6rem;
-  }
-}
-
-@media (max-width: 600px) {
-  span.chat-title {
-    margin-top: 9rem;
-  }
-}
-
-@media (max-width: 500px) {
-  span.chat-title {
-    margin-top: 5rem;
+    margin-top: 7.5rem;
   }
 }
 
@@ -443,8 +483,6 @@ div.image-info-msg {
 
 /* PROFILE */
 div.links-header {
-  position: absolute;
-  right: 20px;
   padding: 15px 35px 15px 15px;
   text-align: center;
   font-size: 1rem;
@@ -487,7 +525,7 @@ span.profile-section-link {
 }
 
 span.profile-section-link:hover {
-  color: white;
+  color: #333;
 }
 
 button,
@@ -520,6 +558,7 @@ img.otherprofile {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   object-fit: contain;
   margin-bottom: 10px;
+  cursor: pointer;
 }
 
 /* profile section + header */
@@ -530,21 +569,22 @@ a:hover {
 div.profile-section {
   position: absolute;
   right: 20px;
-  top: 120px;
+  top: 15%;
   padding: 30px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   text-align: right;
-  background-color: #aecdd0;
+  background-color: #00909e;
+  color: #ffff;
   border-radius: 12px;
   box-shadow: 1px 1px 10px -5px #000;
 }
 
 @media (max-width: 600px) {
   div.profile-section {
-    top: 180px;
     margin-bottom: 20px;
+    top: 25%;
   }
 }
 
@@ -597,6 +637,13 @@ div.profile {
 }
 
 /* BIO EDITOR */
+a.edit-bio-profile-section {
+  color: #fff;
+}
+
+a.edit-bio-profile-section:hover {
+  color: #333;
+}
 div.bio-editing-section {
   width: 100%;
   position: absolute;
@@ -605,10 +652,40 @@ div.bio-editing-section {
   margin-top: 2rem;
 }
 
+@media (max-width: 800px) {
+  div.bio-editing-section {
+    top: 85%;
+  }
+}
+
+@media (max-height: 600px) {
+  div.bio-editing-section {
+    top: 95%;
+  }
+}
+
+@media (max-height: 500px) {
+  div.bio-editing-section {
+    top: 120%;
+  }
+}
+
+@media (max-height: 380px) {
+  div.bio-editing-section {
+    top: 140%;
+  }
+}
+
+@media (max-height: 320px) {
+  div.bio-editing-section {
+    top: 160%;
+  }
+}
+
 span.bio {
   margin-top: 20px;
   margin-bottom: 20px;
-  color: #ad4f25;
+  color: #ea6227;
   font-style: italic;
   display: block;
   text-align: center;
@@ -631,11 +708,10 @@ div.bio {
   }
 }
 
-button.addBio,
-button.editbio {
+button.edit_add_bio {
   background-color: white;
   font-size: 1rem;
-  margin-top: 1.5rem;
+  margin-top: 2rem;
 }
 
 div.bioeditor {
@@ -723,7 +799,7 @@ div.deleteaccount-confirm {
   font-size: 1.5rem;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 700px) {
   div.deleteaccount-confirm {
     font-size: 1rem;
   }
@@ -841,7 +917,37 @@ div.find-people {
 
 @media (max-width: 600px) {
   div.find-people {
-    margin-top: 65%;
+    margin-top: 75%;
+  }
+}
+
+@media (max-width: 550px) {
+  div.find-people {
+    margin-top: 85%;
+  }
+}
+
+@media (max-width: 500px) {
+  div.find-people {
+    margin-top: 95%;
+  }
+}
+
+@media (max-width: 450px) {
+  div.find-people {
+    margin-top: 110%;
+  }
+}
+
+@media (max-width: 350px) {
+  div.find-people {
+    margin-top: 140%;
+  }
+}
+
+@media (max-width: 290px) {
+  div.find-people {
+    margin-top: 160%;
   }
 }
 
@@ -868,7 +974,6 @@ span.section-title {
 
 @media (max-width: 850px) {
   span.section-title {
-    font-size: 1rem;
     margin-top: 50px;
   }
 }
@@ -942,12 +1047,61 @@ span.friendswannabes-text {
   text-transform: uppercase;
   font-style: italic;
   width: 100%;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 600px) {
+  span.friendswannabes-text {
+    line-height: 2.5em;
+  }
 }
 
 div.friends-requesters-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+
+@media (max-width: 600px) {
+  div.friends-requesters-container {
+    margin-top: 15%;
+  }
+}
+
+@media (max-width: 500px) {
+  div.friends-requesters-container {
+    margin-top: 20%;
+  }
+}
+
+@media (max-width: 470px) {
+  div.friends-requesters-container {
+    margin-top: 30%;
+  }
+}
+
+@media (max-width: 400px) {
+  div.friends-requesters-container {
+    margin-top: 45%;
+  }
+}
+
+@media (max-width: 350px) {
+  div.friends-requesters-container {
+    margin-top: 70%;
+  }
+}
+
+@media (max-width: 305px) {
+  div.friends-requesters-container {
+    margin-top: 80%;
+  }
+}
+
+@media (max-width: 290px) {
+  div.friends-requesters-container {
+    margin-top: 90%;
+  }
 }
 
 div.friendwannabe-single-user {
@@ -984,7 +1138,7 @@ img.image-friends-requesters {
 @media (max-width: 1165px) {
   span.friendswannabes-text {
     font-size: 0.8rem;
-    width: 40%;
+    width: 70%;
   }
 
   div.profile-section {
@@ -1001,14 +1155,11 @@ img.image-friends-requesters {
   div.profile-section {
     right: 50%;
     transform: translateX(50%);
+    margin-top: 20px;
   }
 
   div.profile {
     top: 60%;
-  }
-
-  div.bio-editing-section {
-    top: 85%;
   }
 
   button.editbio,
@@ -1018,6 +1169,29 @@ img.image-friends-requesters {
 
   span.section-title {
     font-size: 1.5rem;
+  }
+}
+
+@media (max-height: 600px) {
+  div.profile {
+    top: 70%;
+  }
+}
+
+@media (max-height: 500px) {
+  div.profile {
+    top: 85%;
+  }
+}
+
+@media (max-height: 370px) {
+  div.profile {
+    top: 90%;
+  }
+}
+@media (max-height: 320px) {
+  div.profile {
+    top: 110%;
   }
 }
 

@@ -9,7 +9,7 @@ export default function Welcome() {
   return (
     <div id="welcome">
       <div className="title-socialnetwork">
-        <h1 className="welcome">THE EXCHANGE NETWORK</h1>
+        <span className="welcome">THE EXCHANGE NETWORK</span>
         <span className="network-motto">
           EXCHANGE LANGUAGES, SKILLS, OR ACTIVITIES WITH YOUR FRIENDS!
         </span>
