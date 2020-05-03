@@ -45,6 +45,7 @@ export default class Uploader extends React.Component {
     axios
       .post("/upload", fomData)
       .then(({ data }) => {
+        console.log("data", data);
         this.props.finishedUploading(data);
         this.setState({ uploaderVisible: false });
       })
