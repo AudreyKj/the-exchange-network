@@ -19,7 +19,7 @@ all the users (public) or only visible to their friends (private).
 
 ## Tech
 
-**Stack**: HTML, CSS, JavaScript, Node with Express.js, PostgreSQL, socket.io <br />
+**Stack**: HTML, CSS, JavaScript, Node with Express.js, PostgreSQL, socket.io, Three.js <br />
 **Protection**: CSURF <br />
 **Storage**: AWS in dev | Cloudinary in prod <br />
 **Testing**: React Testing Library + Jest <br />
@@ -28,6 +28,7 @@ all the users (public) or only visible to their friends (private).
 ## Future improvements
 
 - Use Nodemailer to automate sending of emails so that users can change their password.
+- Improve chat
 
 ## Design - color palette
 
