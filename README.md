@@ -3,6 +3,8 @@
 This React app is themed around the idea of exchange: users can post messages in an "Exchange" section to exchange languages, skills, or services with other people. Users can decide wether their posts should be visible to
 all the users (public) or only visible to their friends (private).
 
+[visit live app](https://the-exchange-network.herokuapp.com/)
+
 ## Features
 
 - register/login (password hashed with bcrypt)
@@ -27,10 +29,13 @@ all the users (public) or only visible to their friends (private).
 
 - Use Nodemailer to automate sending of emails so that users can change their password.
 
+#Design - color palette
+
+![screenshot](ssocialnetwork_palette.png)
+
 ## Visuals
 
 ![screenshot](screenshot_1.png)
-![screenshot](screenshot_2.png)
 ![screenshot](screenshot_3.png)
 ![screenshot](screenshot_4.png)
 ![screenshot](screenshot_5.png)
