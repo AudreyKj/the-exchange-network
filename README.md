@@ -29,7 +29,7 @@ all the users (public) or only visible to their friends (private).
 
 - Use Nodemailer to automate sending of emails so that users can change their password.
 
-##Design - color palette
+## Design - color palette
 
 ![screenshot](palette.jpg)
 --> black #333333, blue #00909e, grey #d6d6d6, white #ffffff
