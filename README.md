@@ -31,14 +31,13 @@ all the users (public) or only visible to their friends (private).
 
 ## Design - color palette
 
-<p align="center">
-<img width="400" height="400" src="palette.jpg">
+<img align="center" width="400" height="400" src="palette.jpg">
 
+<p >
 --> black, #333333 </br>
 --> blue, #00909e </br>
 --> grey, #d6d6d6 </br>
 --> white, #ffffff </br>
-
 </p>
 
 ## Visuals
