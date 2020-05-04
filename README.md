@@ -50,5 +50,5 @@ grey, #aaaaaa </br>
 ![screenshot](screenshot_3.png)
 
 <p align="center">
-<img width="300" height="614" src="mobile.jpg">
+<img width="300" height="614" src="mobile.png">
 </p>
