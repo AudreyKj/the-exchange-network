@@ -45,8 +45,8 @@ export function Chat() {
           ))}
 
         <textarea
-          rows="4"
-          cols="50"
+          rows="3"
+          cols="45"
           placeholder="write here - press Enter to submit"
           onKeyDown={keyCheck}
           className="chat-textarea"

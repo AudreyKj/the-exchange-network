@@ -139,10 +139,10 @@ function getFriendsWannabes(user_id) {
 
 function getLastMessages() {
   return db.query(
-    `SELECT users.id, users.first, users.last,
-        messages.user_id, messages.message, messages.id, messages.created_at
-        FROM messages LEFT JOIN users ON users.id = messages.user_id
-       ORDER BY messages.id DESC LIMIT 10`
+    `SELECT users.id, users.first, users.last, users.url,
+      messages.user_id, messages.message, messages.id, messages.created_at
+      FROM messages LEFT JOIN users ON users.id = messages.user_id
+      ORDER BY messages.id DESC LIMIT 10`
   );
 }
 
@@ -156,7 +156,9 @@ function storeNewMessage(user_id, message) {
 }
 
 function getInfoForMsg(user_id) {
-  return db.query(`SELECT  first, last FROM users WHERE id = $1`, [user_id]);
+  return db.query(`SELECT  first, last, url FROM users WHERE id = $1`, [
+    user_id
+  ]);
 }
 
 function insertExchangePublic(title, city, description, author_user_id) {

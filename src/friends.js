@@ -73,7 +73,7 @@ export default function Friends() {
 
               <img
                 className="image-friends-requesters"
-                src={"/default-user-avatar.png"}
+                src={user.url || "/default-user-avatar.png"}
                 alt={(user.first, user.last)}
               />
               <Link to={`/user/${user.id}`}>
