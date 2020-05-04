@@ -50,5 +50,5 @@ all the users (public) or only visible to their friends (private).
 ![screenshot](screenshot_3.png)
 
 <p align="center">
-<img width="550" height="880" src="mobile.png">
+<img width="300" height="529" src="mobile.png">
 </p>
