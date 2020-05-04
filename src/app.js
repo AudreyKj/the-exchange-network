@@ -155,22 +155,42 @@ export default class App extends React.Component {
             </div>
           )}
 
-          <div className="links-header">
-            <Link className="link-menu" to="/chat">
-              chat
-            </Link>
+          <div className="header-wrapper">
+            <div className="links-header">
+              <Link className="link-menu" to="/chat">
+                chat
+              </Link>
 
-            <Link className="link-menu" to="/exchange">
-              exchange
-            </Link>
+              <Link className="link-menu" to="/exchange">
+                exchange
+              </Link>
 
-            <Link className="link-menu" to="/friends">
-              friends
-            </Link>
+              <Link className="link-menu" to="/friends">
+                friends
+              </Link>
 
-            <Link className="link-menu" to="/recentusers">
-              find people
-            </Link>
+              <Link className="link-menu" to="/recentusers">
+                find people
+              </Link>
+            </div>
+
+            <div className="links-header-mobile">
+              <Link className="link-menu" to="/">
+                EDIT BIO
+              </Link>
+
+              <span className="link-menu" onClick={e => this.toggleModal(e)}>
+                PROFILE PIC
+              </span>
+
+              <span className="link-menu" onClick={this.deleteaccountcheck}>
+                DELETE ACCOUNT
+              </span>
+
+              <span className="link-menu" onClick={this.logout}>
+                LOGOUT
+              </span>
+            </div>
           </div>
 
           <div>

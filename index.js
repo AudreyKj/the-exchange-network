@@ -407,12 +407,10 @@ app.get("/getexchanges", (req, res) => {
             }
           }
 
-          console.log("data", data);
           if (data.length === 0) {
             return;
           } else {
             const flatten = data.flat();
-            console.log("flatten", flatten);
             return res.json(flatten);
           }
         })

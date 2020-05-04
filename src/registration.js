@@ -2,8 +2,8 @@ import React from "react";
 import axios from "./axios";
 
 export default class Registration extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       error: false,
       error_emptyfields: false,
@@ -63,6 +63,9 @@ export default class Registration extends React.Component {
   render() {
     return (
       <div className="register">
+        <div className="close-auth" onClick={this.props.toggleRegister}>
+          X
+        </div>
         <h1 className="welcome"> register </h1>
         <form>
           <label className="auth" htmlFor="code">

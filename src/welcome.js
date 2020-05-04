@@ -1,11 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import Registration from "./registration";
 import Login from "./login";
+import Register from "./registration.js";
 import Shape from "./shape";
 import { Link } from "react-router-dom";
 import { HashRouter, Route } from "react-router-dom";
 
 export default function Welcome() {
+  const [loginVisible, setloginVisible] = useState();
+  const [registerVisible, setregisterVisible] = useState();
+
+  const toggleLogin = () => {
+    if (!loginVisible) {
+      setloginVisible(true);
+    } else {
+      setloginVisible(false);
+    }
+  };
+
+  const toggleRegister = () => {
+    if (!registerVisible) {
+      setregisterVisible(true);
+    } else {
+      setregisterVisible(false);
+    }
+  };
+
   return (
     <div id="welcome">
       <div className="title-socialnetwork">
@@ -15,12 +35,12 @@ export default function Welcome() {
         </span>
         <HashRouter>
           <div className="auth-link-wrapper">
-            <Link className="auth-link" to="/login">
+            <a className="auth-link" onClick={toggleLogin}>
               LOGIN
-            </Link>
-            <Link className="auth-link" to="/register">
+            </a>
+            <a className="auth-link" onClick={toggleRegister}>
               REGISTER
-            </Link>
+            </a>
           </div>
 
           <Route exact path="/register" component={Registration} />
@@ -28,6 +48,9 @@ export default function Welcome() {
           <Route exact path="/login" component={Login} />
         </HashRouter>
       </div>
+
+      {loginVisible && <Login toggleLogin={toggleLogin} />}
+      {registerVisible && <Register toggleRegister={toggleRegister} />}
 
       <div className="shape-container">
         <Shape> </Shape>

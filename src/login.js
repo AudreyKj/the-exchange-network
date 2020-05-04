@@ -1,10 +1,12 @@
 import React from "react";
 import axios from "./axios";
+import Welcome from "./welcome.js";
 import { Link } from "react-router-dom";
 
 export default class Login extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    console.log("props", props);
     this.state = {
       error: false
     };
@@ -51,6 +53,9 @@ export default class Login extends React.Component {
   render() {
     return (
       <div className="login">
+        <div className="close-auth" onClick={this.props.toggleLogin}>
+          X
+        </div>
         <h1 className="welcome"> LOGIN </h1>
         <form>
           <label htmlFor="code">email</label>

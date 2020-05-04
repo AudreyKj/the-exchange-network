@@ -52,3 +52,6 @@ grey, #aaaaaa </br>
 <p align="center">
 <img width="300" height="614" src="mobile.png">
 </p>
+<p align="center">
+<img width="300" height="606" src="mobile2.png">
+</p>
