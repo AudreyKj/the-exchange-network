@@ -35,10 +35,10 @@ all the users (public) or only visible to their friends (private).
 <p align="center">
 <img width="150" height="250" src="palette.jpg">
 <p align="center">
---> black, #333333 </br>
---> blue, #00909e </br>
---> light grey, #d6d6d6 </br>
---> grey, #aaaaaa </br>
+black, #333333 </br>
+blue, #00909e </br>
+light grey, #d6d6d6 </br>
+grey, #aaaaaa </br>
 </p>
 </p>
 
@@ -50,5 +50,5 @@ all the users (public) or only visible to their friends (private).
 ![screenshot](screenshot_3.png)
 
 <p align="center">
-<img width="300" height="529" src="mobile.png">
+<img width="300" height="528" src="mobile.png">
 </p>
