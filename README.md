@@ -27,13 +27,13 @@ all the users (public) or only visible to their friends (private).
 
 ## Future improvements
 
-- Use Nodemailer to automate sending of emails so that users can change their password.
+- Automate sending of emails so that users can change their password.
 - Improve chat
 
 ## Design - color palette
 
 <p align="center">
-<img width="150" height="250" src="palette.jpg">
+<img width="150" height="250" src="readMe/palette.jpg">
 <p align="center">
 black, #333333 </br>
 blue, #00909e </br>
@@ -44,13 +44,13 @@ grey, #aaaaaa </br>
 
 ## Visuals
 
-![screenshot](screenshot_1.png)
-![screenshot](screenshot_4.png)
-![screenshot](screenshot_5.png)
+![screenshot](readMe/screenshot_1.png)
+![screenshot](readMe/screenshot_4.png)
+![screenshot](readMe/screenshot_5.png)
 
 <p align="center">
-<img width="300" height="614" src="mobile.png">
+<img width="300" height="614" src="readMe/mobile.png">
 </p>
 <p align="center">
-<img width="300" height="606" src="mobile2.png">
+<img width="300" height="606" src="readMe/mobile2.png">
 </p>
