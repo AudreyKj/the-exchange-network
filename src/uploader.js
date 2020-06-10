@@ -33,16 +33,16 @@ export default class Uploader extends React.Component {
       uploaderVisible: true
     });
 
-    const fomData = new FormData();
+    const formData = new FormData();
 
     this.setState({ file: event.target.files[0] }, () => {
-      fomData.append("file", this.state.file);
+      formData.append("file", this.state.file);
     });
 
     this.setState({ imageUploading: true });
 
     axios
-      .post("/upload", fomData)
+      .post("/upload", formData)
       .then(({ data }) => {
         if (data.error) {
           this.setState({ imageUploading: false });

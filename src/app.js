@@ -12,6 +12,7 @@ import { Chat } from "./chat.js";
 import OtherProfile from "./otherprofile.js";
 import FindPeople from "./findpeople.js";
 import Friends from "./friends.js";
+import { Helmet } from "react-helmet";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -91,6 +92,13 @@ export default class App extends React.Component {
     }
     return (
       <>
+        <Helmet>
+          <meta property="og:image:width" content="1080" />
+          <meta property="og:image:height" content="1080" />
+          <meta property="og:image" content="preview.jpg" />
+          <meta property="og:image:url" content="preview.jpg" />
+        </Helmet>
+
         <div className="header">
           <Logo></Logo>
         </div>
