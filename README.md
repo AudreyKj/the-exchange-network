@@ -19,11 +19,11 @@ all the users (public) or only visible to their friends (private).
 
 ## Tech
 
-**Stack**: HTML, CSS, JavaScript, Node with Express.js, PostgreSQL, socket.io, Three.js <br />
+**Stack**: HTML, CSS, JavaScript, Three.js, Node.js, React, Redux, PostgreSQL, socket.io<br />
 **Protection**: CSURF <br />
 **Storage**: AWS in dev | Cloudinary in prod <br />
 **Testing**: React Testing Library + Jest <br />
-**Framework**: React | **Deployment**: Heroku
+**Deployment**: Heroku
 
 ## Future improvements
 
