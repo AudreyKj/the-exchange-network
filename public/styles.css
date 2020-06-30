@@ -98,6 +98,7 @@ h1.welcome {
   font-style: italic;
   text-align: center;
   margin-bottom: 15px;
+  font-weight: 300;
 }
 
 span.welcome {
@@ -123,7 +124,7 @@ div.auth-link-wrapper {
 }
 
 a.auth-link {
-  border: 1px solid white;
+  border: 2px solid white;
   padding: 10px;
   border-radius: 12px;
   text-align: center;
@@ -135,13 +136,43 @@ a.auth-link:hover {
   background-color: grey;
 }
 
+footer {
+  left: 0;
+  right: 0;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  color: #333;
+  height: 20px;
+  text-align: center;
+  padding: 15px;
+  margin: 0;
+  width: 100%;
+
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: -5px;
+}
+
+a.footer-text:active,
+a.footer-text:visited {
+  color: #333;
+}
+
+a.footer-text:hover {
+  text-decoration: underline;
+}
+
 /* WELCOME - AUTH */
 div.login,
 div.register {
   position: absolute;
   top: 15px;
   left: 15px;
-  border: 1px solid white;
+  border: 2px solid white;
   padding: 15px;
   border-radius: 12px;
   background-color: lightgrey;

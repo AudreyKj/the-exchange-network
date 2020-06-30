@@ -31,7 +31,7 @@ export default function Welcome() {
       <div className="title-socialnetwork">
         <span className="welcome">THE EXCHANGE NETWORK</span>
         <span className="network-motto">
-          EXCHANGE LANGUAGES, SKILLS, OR ACTIVITIES WITH YOUR FRIENDS!
+          EXCHANGE LANGUAGES OR SKILLS WITH YOUR FRIENDS!
         </span>
         <HashRouter>
           <div className="auth-link-wrapper">
