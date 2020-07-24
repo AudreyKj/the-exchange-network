@@ -66,7 +66,16 @@ export default function Welcome() {
         </div>
       )}
 
-      <footer>EXCHANGE NETWORK © 2020</footer>
+      <footer>
+        EXCHANGE NETWORK © 2020 - see on&nbsp;
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://github.com/AudreyKj/the-exchange-network-app"
+        >
+          GitHub
+        </a>
+      </footer>
     </div>
   );
 }

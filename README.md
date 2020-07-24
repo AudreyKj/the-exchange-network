@@ -19,38 +19,15 @@ all the users (public) or only visible to their friends (private).
 
 ## Tech
 
-**Stack**: HTML, CSS, JavaScript, Three.js, Node.js, React, Redux, PostgreSQL, socket.io<br />
+**Stack**: SASS/SCSS, JavaScript, React, Node.js, Redux, PostgreSQL, socket.io, Three.js <br />
 **Protection**: CSURF <br />
 **Storage**: AWS in dev | Cloudinary in prod <br />
 **Testing**: React Testing Library + Jest <br />
 **Deployment**: Heroku
 
-## Future improvements
-
-- Automate sending of emails so that users can change their password.
-- Improve chat
-
-## Design - color palette
-
-<p align="center">
-<img width="150" height="250" src="readMe/palette.jpg">
-<p align="center">
-black, #333333 </br>
-blue, #00909e </br>
-light grey, #d6d6d6 </br>
-grey, #aaaaaa </br>
-</p>
-</p>
-
 ## Visuals
 
 ![screenshot](readMe/screenshot_1.png)
+![screenshot](readMe/screenshot_2.png)
+![screenshot](readMe/screenshot_3.png)
 ![screenshot](readMe/screenshot_4.png)
-![screenshot](readMe/screenshot_5.png)
-
-<p align="center">
-<img width="300" height="614" src="readMe/mobile.png">
-</p>
-<p align="center">
-<img width="300" height="606" src="readMe/mobile2.png">
-</p>
