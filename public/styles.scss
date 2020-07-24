@@ -1,3 +1,10 @@
+@import-normalize;
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  outline: none;
+}
+
 body {
   background-color: lightgrey;
   font-family: Arial, Helvetica, "sans-serif";
@@ -108,6 +115,7 @@ span.image-uplaoding {
 div#welcome {
   width: 100%;
   min-height: 100vh;
+  position: fixed;
 }
 
 div#logo-boardCanvas {
@@ -121,7 +129,7 @@ div.shape-container {
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-top: 40px;
+  min-height: 100vh;
 }
 
 h1.welcome {
@@ -307,7 +315,6 @@ a.link-header:hover,
 a.link-header:visited {
   color: #fff;
   text-decoration: none;
-  text-align: center;
 }
 
 @media (max-width: 800px) {

@@ -106,15 +106,13 @@ class Shape extends Component {
 
   render() {
     return (
-      <div className="wrapper">
-        <div
-          style={{ width: "50vw", height: "40vw" }}
-          id="boardCanvas"
-          ref={mount => {
-            this.mount = mount;
-          }}
-        />
-      </div>
+      <div
+        style={{ width: "50vw", height: "40vw" }}
+        id="boardCanvas"
+        ref={mount => {
+          this.mount = mount;
+        }}
+      />
     );
   }
 }
