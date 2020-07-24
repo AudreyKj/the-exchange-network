@@ -6,7 +6,8 @@
   "scripts": {
     "build": "node build.js",
     "start": "node index.js",
-    "test": "jest"
+    "test": "jest",
+    "build-css": "node-sass --include-path scss public/styles.scss   public/styles.css"
   },
   "engines": {
     "npm": "6.13.4",

@@ -1,7 +1,6 @@
 # React exchange network app
 
-React app themed around the idea of exchange: users can post messages in an "Exchange" section to exchange languages, skills, or services with other people. Users can decide wether their posts should be visible to
-all the users (public) or only visible to their friends (private).
+React app with social network features such as login/register, create a profile, chat with other users, find friends. Users can also post messages in an "Exchange" section to exchange languages, skills, or services with other people. Users can decide whether their posts should be visible to all the users (public) or only visible to their friends (private).
 
 [visit live app](https://the-exchange-network.herokuapp.com/)
 
