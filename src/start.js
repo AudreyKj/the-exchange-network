@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import Welcome from "./welcome";
 import App from "./app";
@@ -19,13 +20,19 @@ const store = createStore(
 let elem;
 
 if (location.pathname === "/welcome") {
-  elem = <Welcome />;
+  elem = (
+    <BrowserRouter>
+      <Welcome />
+    </BrowserRouter>
+  );
 } else {
   init(store);
   elem = (
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </BrowserRouter>
   );
 }
 

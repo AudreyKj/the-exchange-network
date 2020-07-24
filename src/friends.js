@@ -32,14 +32,14 @@ export default function Friends() {
 
   return (
     <div className="friendswannabes">
+      <span className="section-title">
+        FRIENDS <br />
+      </span>
       <div className="friends-requesters-container">
-        <span className="section-title">FRIENDS</span>
         <span className="friendswannabes-text">
           All your friends and requests are listed here. <br />
-          <br /> Go to
-          <Link className="link-menu" to="/recentusers">
-            find people
-          </Link>
+          <br /> Go to&nbsp;
+          <Link to="/recentusers">find people</Link>
           &nbsp; to make new friends.
         </span>
         {requesters &&

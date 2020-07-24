@@ -47,20 +47,16 @@ export default class BioEditor extends React.Component {
 
   render() {
     return (
-      <div className="bio-editing-section">
+      <>
         {!this.state.bio && (
           <>
-            <button className="edit_add_bio" onClick={this.onClick}>
-              ADD A BIO
-            </button>
+            <button onClick={this.onClick}>ADD A BIO</button>
           </>
         )}
 
         {this.state.bio && (
           <>
-            <button className="edit_add_bio" onClick={this.onClick}>
-              EDIT YOUR BIO
-            </button>
+            <button onClick={this.onClick}>EDIT YOUR BIO</button>
           </>
         )}
 
@@ -95,7 +91,7 @@ export default class BioEditor extends React.Component {
             )}
           </>
         )}
-      </div>
+      </>
     );
   }
 }

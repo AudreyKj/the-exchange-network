@@ -21,7 +21,7 @@ export function Chat() {
   };
   return (
     <div className="chat-wrapper">
-      <span className="chat-title"> CHAT </span>
+      <span className="section-title"> CHAT </span>
       <div className="chat" ref={elementRef}>
         {chatMessages &&
           chatMessages.map(message => (

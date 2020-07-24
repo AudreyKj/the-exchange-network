@@ -53,10 +53,7 @@ export default class Login extends React.Component {
   render() {
     return (
       <div className="login">
-        <div className="close-auth" onClick={this.props.toggleLogin}>
-          X
-        </div>
-        <h1 className="welcome"> LOGIN </h1>
+        <span className="section-title"> LOGIN </span>
         <form>
           <label htmlFor="code">email</label>
           <input
@@ -83,10 +80,7 @@ export default class Login extends React.Component {
         </form>
 
         {this.state.error && (
-          <span className="error-login">
-            Authentification failed: please make sure you entered the right
-            password and email.
-          </span>
+          <span className="error-login">Authentification failed</span>
         )}
       </div>
     );

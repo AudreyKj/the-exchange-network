@@ -63,10 +63,7 @@ export default class Registration extends React.Component {
   render() {
     return (
       <div className="register">
-        <div className="close-auth" onClick={this.props.toggleRegister}>
-          X
-        </div>
-        <h1 className="welcome"> register </h1>
+        <span className="section-title"> register </span>
         <form>
           <label className="auth" htmlFor="code">
             first name
@@ -119,34 +116,30 @@ export default class Registration extends React.Component {
         </form>
 
         {this.state.error && (
-          <span className="error-register">Oops, something went wrong!</span>
+          <span className="error-register">Authentification failed</span>
         )}
 
         {this.state.error_first && (
           <span className="error-register">
-            Oops, something went wrong! please make sure you entered your first
-            name correctly.
+            please make sure you entered your first name correctly.
           </span>
         )}
 
         {this.state.error_last && (
           <span className="error-register">
-            Oops, something went wrong! please make you entered your last name
-            correctly.
+            please make you entered your last name correctly.
           </span>
         )}
 
         {this.state.error_email && (
           <span className="error-register">
-            Oops, something went wrong! please make you entered your email
-            correctly
+            please make you entered your email correctly
           </span>
         )}
 
         {this.state.error_password && (
           <span className="error-register">
-            Oops, something went wrong! please make sure your password includes
-            at least 5 characters
+            please make sure your password includes at least 5 characters
           </span>
         )}
       </div>

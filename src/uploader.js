@@ -16,11 +16,7 @@ export default class Uploader extends React.Component {
   }
 
   closeModal() {
-    document.querySelector("div.modal-background").style.animation =
-      "fadeOff 0.3s";
-    setTimeout(() => {
-      this.setState({ uploaderVisible: false });
-    }, 300);
+    this.setState({ uploaderVisible: false });
   }
 
   componentDidMount() {

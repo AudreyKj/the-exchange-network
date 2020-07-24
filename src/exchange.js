@@ -60,7 +60,7 @@ export default function Exchange() {
   return (
     <div className="exchange-wrapper">
       <div className="exchange">
-        <span className="section-title events-title"> EXCHANGE </span>
+        <span className="section-title"> EXCHANGE </span>
 
         <form className="form-exchange">
           EXCHANGE SERVICES, LANGUAGES, OR SKILLS WITH OTHER USERS!
@@ -111,7 +111,7 @@ export default function Exchange() {
             required
           />
           <label className="exchange" htmlFor="title">
-            DESCRIPTION (min 10 / max 150 characters)
+            DESCRIPTION (max 150 char.)
           </label>
           <textarea
             rows="3"

@@ -3,6 +3,8 @@ body {
   font-family: Arial, Helvetica, "sans-serif";
   font-weight: 300;
   color: #333;
+  margin: 0;
+  padding: 0;
 }
 
 /* GENERAL STYLES */
@@ -23,44 +25,71 @@ form {
   align-items: flex-start;
 }
 
-.link-menu,
-.link-menu:visited {
-  text-decoration: none;
-  color: #fff;
-  font-size: 1rem;
-  letter-spacing: 0.04em;
-  min-width: 1.5em;
-  border-radius: 10em;
-  background: #333;
-  border: 1px solid transparent;
+input {
+  margin-top: 5px;
+  padding: 10px;
+  font-size: 1.2rem;
+  background-color: lightgrey;
+}
+
+label {
   text-transform: uppercase;
-  padding: 0.6em 0.8em 0.6em;
-  margin-top: 15px;
-  box-shadow: 1px 1px 10px -5px #000;
-  z-index: 100000;
-  cursor: pointer;
+  font-size: 1.2rem;
 }
 
-.link-menu:hover {
+span.section-title {
+  text-align: center;
+  font-size: 2rem;
   color: #333;
-  background: #fff;
+  text-transform: uppercase;
+  margin-bottom: 20px;
 }
 
-@media (max-width: 1200px) {
-  .link-menu,
-  .link-menu:visited,
-  .link-menu:hover {
-    font-size: 0.8rem;
+header {
+  width: 100%;
+  height: 80px;
+
+  display: flex;
+  justify-content: center;
+
+  position: fixed;
+}
+
+@media (max-width: 550px) {
+  header {
+    height: 220px;
   }
 }
 
-/* @media (max-width: 500px) {
-  a.link-menu,
-  a.link-menu:visited,
-  a.link-menu:hover {
-    padding: 0.4em 0.8em 0.2em;
+@media (max-width: 370px) {
+  header {
+    height: 250px;
   }
-} */
+}
+
+@media (min-width: 1900px) {
+  header {
+    height: 120px;
+  }
+}
+
+div.menu {
+  position: absolute;
+  right: 20px;
+
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 770px) {
+  div.menu {
+    position: relative;
+    margin-left: 30px;
+    right: 0;
+    display: flex;
+  }
+}
 
 /* ERROR */
 span.error {
@@ -76,6 +105,11 @@ span.image-uplaoding {
 }
 
 /* WELCOME */
+div#welcome {
+  width: 100%;
+  min-height: 100vh;
+}
+
 div#logo-boardCanvas {
   top: 0;
   left: 0;
@@ -87,17 +121,16 @@ div.shape-container {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
+  margin-top: -60px;
 }
 
 h1.welcome {
   font-size: 1.8rem;
   color: black;
-  text-shadow: rgba(255, 255, 255, 0.5) 0px 3px 3px;
   text-transform: uppercase;
-  font-style: italic;
   text-align: center;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
   font-weight: 300;
 }
 
@@ -136,38 +169,8 @@ a.auth-link:hover {
   background-color: grey;
 }
 
-footer {
-  left: 0;
-  right: 0;
-  position: fixed;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #fff;
-  color: #333;
-  height: 20px;
-  text-align: center;
-  padding: 15px;
-  margin: 0;
-  width: 100%;
-
-  font-size: 1rem;
-  line-height: 1.5;
-  margin-bottom: -5px;
-}
-
-a.footer-text:active,
-a.footer-text:visited {
-  color: #333;
-}
-
-a.footer-text:hover {
-  text-decoration: underline;
-}
-
 /* WELCOME - AUTH */
-div.login,
+/* div.login,
 div.register {
   position: absolute;
   top: 15px;
@@ -176,21 +179,21 @@ div.register {
   padding: 15px;
   border-radius: 12px;
   background-color: lightgrey;
-}
+} */
 
-@media (max-width: 850px) and (max-height: 1030px) {
-  div.register,
-  div.login {
-    width: 100%;
-    height: 100%;
-    border: none;
-    left: 0;
-    top: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: lightgrey;
-  }
+/* @media (max-width: 850px) and (max-height: 1030px) { */
+div.register,
+div.login {
+  width: 100%;
+  min-height: 100vh;
+  margin-top: 40px;
+  /* border: none; */
+  /* left: 0; */
+  /* top: 0; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: lightgrey;
 }
 
 div.close-auth {
@@ -243,21 +246,8 @@ div.password-reset {
 
 span.error-login,
 span.error-register {
-  background-color: lightgrey;
-  margin-top: 30px;
-  position: absolute;
-  border: 1px solid red;
-  padding: 10px;
-  left: 0;
-}
-
-span.error-reset {
-  margin-top: 150px;
-  position: absolute;
-  border: 1px solid red;
-  padding: 10px;
-  left: 0;
-  background-color: lightgrey;
+  padding-top: 10px;
+  color: red;
 }
 
 div.title-socialnetwork {
@@ -265,8 +255,22 @@ div.title-socialnetwork {
   margin-bottom: 10px;
 }
 
-button.auth {
-  margin-bottom: 15px;
+button.auth,
+button,
+.link-menu,
+.link-menu:visited {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 1.3rem;
+  letter-spacing: 0.04em;
+  width: auto;
+  color: #333;
+  border: 1px solid #333;
+  text-transform: uppercase;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  padding: 0.4em 0.6em 0.4em;
+  cursor: pointer;
 }
 
 span.exchange-spec {
@@ -299,6 +303,30 @@ a.link-auth {
 }
 
 /* EXCHANGE */
+a.link-header,
+a.link-header:hover,
+a.link-header:visited {
+  color: #fff;
+  text-decoration: none;
+}
+
+@media (max-width: 800px) {
+  a.link-header,
+  a.link-header:hover,
+  a.link-header:visited {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 600px) {
+  a.link-header,
+  a.link-header:hover,
+  a.link-header:visited {
+    font-size: 0.7rem;
+  }
+}
+
+/* EXCHANGE */
 span.exchange-city {
   text-transform: capitalize;
 }
@@ -320,6 +348,7 @@ textarea.exchange-input {
   text-transform: uppercase;
   margin: 0.15em 0.1em;
   padding: 0.5em 1em 0.4em;
+  font-family: Arial;
 }
 
 @media (max-width: 700px) {
@@ -342,7 +371,7 @@ div.exchange {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-top: 5%;
+  margin-top: 3%;
 }
 
 @media (max-width: 830px) {
@@ -378,7 +407,7 @@ form.form-exchange {
 
 @media (max-width: 700px) {
   form.form-exchange {
-    width: 50%;
+    width: 90%;
   }
 }
 
@@ -390,13 +419,14 @@ div.echange-wrapper {
 
 div.exchange-list {
   border: 1px solid white;
-  margin-bottom: 15px;
-  margin-right: 15px;
-  padding: 10px;
+
   background-color: #ffffffa3;
   max-width: 500px;
   border-radius: 12px;
   word-wrap: break-word;
+  border: 1px solid white;
+  margin: 15px;
+  padding: 10px;
 }
 
 @media (max-width: 600px) {
@@ -415,7 +445,7 @@ div.chat-wrapper {
   align-items: center;
   flex-direction: column;
   height: 100vh;
-  margin-top: 5%;
+  margin-top: 3%;
 }
 
 div.chat {
@@ -425,7 +455,6 @@ div.chat {
   padding: 0 20px 20px 20px;
   font-size: 0.9rem;
   border-radius: 12px;
-  margin-top: 20px;
   border: 1px dashed white;
 }
 
@@ -561,29 +590,6 @@ span.profile-section-link:hover {
   color: #333;
 }
 
-button,
-button.friend-button {
-  cursor: pointer;
-  /* padding: 15px; */
-  border-radius: 12px;
-  color: #333;
-  font-size: 1rem;
-  letter-spacing: 0.04em;
-  min-width: 1.5em;
-  border-radius: 10em;
-  background: #ffffff;
-  border: 1px solid transparent;
-  text-transform: uppercase;
-  padding: 0.6em 0.8em 0.6em;
-  box-shadow: 1px 1px 10px -5px #000;
-  outline: none;
-}
-
-button:hover {
-  transition-duration: 0.4s;
-  background-color: white;
-}
-
 img.profilepic,
 img.otherprofile {
   width: 70px;
@@ -591,7 +597,6 @@ img.otherprofile {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   object-fit: contain;
   margin-bottom: 10px;
-  cursor: pointer;
 }
 
 /* profile section + header */
@@ -621,10 +626,43 @@ div.profile-section {
 }
 
 /* PROFILE */
+div.profile-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 div.profile-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+
+  border: 1px dashed white;
+  width: 40%;
+  border-radius: 12px;
+  margin-top: 40px;
+  padding-bottom: 40px;
+}
+
+@media (max-width: 800px) {
+  div.profile-wrapper {
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 50%;
+  }
+}
+
+@media (max-width: 600px) {
+  div.profile-wrapper {
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 80%;
+  }
+}
+
+span.greeting {
+  font-size: 1.5rem;
+  text-align: center;
 }
 
 div.other-profiles-wrapper {
@@ -704,11 +742,6 @@ div.bio {
   div.bio {
     font-size: 0.9rem;
   }
-}
-
-button.edit_add_bio {
-  background-color: white;
-  font-size: 1rem;
 }
 
 div.bioeditor {
@@ -916,7 +949,7 @@ div.find-people {
   flex-direction: column;
   align-items: center;
   width: 70%;
-  margin-top: 5%;
+  margin-top: 3%;
 }
 
 @media (max-width: 1044px) {
@@ -933,17 +966,6 @@ span.findpeople {
   text-transform: uppercase;
   font-style: italic;
   width: 100%;
-}
-
-span.section-title {
-  text-align: center;
-  font-size: 2rem;
-  color: #333;
-  text-shadow: rgba(255, 255, 255, 0.5) 0px 3px 3px;
-  text-transform: uppercase;
-  font-style: italic;
-  width: 100%;
-  margin-bottom: 20px;
 }
 
 div.recent-users {
@@ -987,7 +1009,7 @@ div.friendswannabes {
   flex-direction: column;
   align-items: center;
   flex-wrap: wrap;
-  margin-top: 5%;
+  margin-top: 3%;
 }
 
 span.friendswannabes-text {
@@ -1107,5 +1129,28 @@ img.image-friends-requesters {
   button.editbio,
   button.addbio {
     font-size: 0.9rem;
+  }
+}
+
+/* FOOTER */
+footer {
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  height: 40px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: #333;
+  justify-content: center;
+  background-color: lightgrey;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.9),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+
+@media (max-width: 350px) {
+  footer {
+    height: 50px;
   }
 }
