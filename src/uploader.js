@@ -13,6 +13,7 @@ export default class Uploader extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    console.log("props", this.props.finishedUploading);
   }
 
   closeModal() {
@@ -46,7 +47,7 @@ export default class Uploader extends React.Component {
           return;
         } else {
           this.setState({ error: false });
-          this.props.finishedUploading(data);
+          this.props.updateProfilePic(data);
           this.setState({ uploaderVisible: false });
         }
       })

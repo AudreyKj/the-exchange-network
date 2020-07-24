@@ -18,8 +18,6 @@ export default function FindPeople() {
 
       const searchData = await axios.get(`/search/${searchValue.val}`);
 
-      console.log("searchdata", searchData);
-
       if (searchValue === "" || !Array.isArray(searchData.data)) {
         return;
       } else if (searchValue !== "" && Array.isArray(searchData.data)) {

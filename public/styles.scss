@@ -134,6 +134,13 @@ div#welcome {
   min-height: 100vh;
 }
 
+div.shape-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
 div#logo-boardCanvas {
   top: 0;
   left: 0;
@@ -187,7 +194,7 @@ a.auth-link:hover {
   background-color: grey;
 }
 
-/* WELCOME - AUTH */
+/* AUTH */
 
 div.register,
 div.login {
@@ -289,7 +296,6 @@ a.link-header:visited {
   }
 }
 
-/* EXCHANGE */
 span.exchange-city {
   @include uppercaseCenter;
 }
@@ -475,61 +481,6 @@ img.chat-img {
 div.image-info-msg {
   display: flex;
   align-items: center;
-}
-
-/* PROFILE */
-div.header-wrapper {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-div.links-header {
-  padding: 15px 35px 15px 15px;
-  font-size: 1rem;
-  @include uppercaseCenter;
-  font-style: italic;
-  z-index: 100000;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-div.links-header-mobile {
-  display: none;
-}
-
-@media (max-width: 900px) {
-  div.links-header-mobile {
-    display: block;
-    width: 80%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-}
-
-.link-menu {
-  margin-left: 20px;
-}
-
-div.header {
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  margin-left: 20px;
-  z-index: 100000;
-  display: block;
-}
-
-@media (max-width: 900px) {
-  div.header {
-    width: 50%;
-  }
-}
-
-.pic-header {
-  padding: 15px;
-  margin-bottom: 10px;
 }
 
 span.profile-section-link {

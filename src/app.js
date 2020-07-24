@@ -23,7 +23,6 @@ export default class App extends React.Component {
     this.state = {
       first: null,
       last: null,
-      url: null,
       id: null,
       bio: null,
       setbio: null
@@ -34,21 +33,11 @@ export default class App extends React.Component {
     axios
       .get("/user")
       .then(({ data }) => {
-        console.log("this.state", this.state);
-        console.log(data);
         this.setState(data);
       })
       .catch(function(error) {
-        console.log("error in componentDidMount App", error);
+        console.log("error", error);
       });
-  }
-
-  closedeleteAccountCheck() {
-    document.querySelector("div.modal-background").style.animation =
-      "fadeOff 0.3s";
-    setTimeout(() => {
-      this.setState({ deleteAccountCheckVisible: false });
-    }, 300);
   }
 
   render() {

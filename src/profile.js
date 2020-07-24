@@ -16,11 +16,22 @@ export default class Profile extends React.Component {
       last: this.props.last,
       image: this.props.image,
       bio: this.props.bio,
+      url: null,
       setBio: this.props.setBio,
       uploaderVisible: this.props.uploaderVisible
     };
     this.toggleModal = this.toggleModal.bind(this);
+    this.updateProfilePic = this.updateProfilePic.bind(this);
     console.log(props);
+    console.log(this.state);
+  }
+
+  updateProfilePic(newUrl) {
+    console.log("newUrl", newUrl);
+    console.log("this.state", this.state);
+    this.setState({
+      url: newUrl
+    });
   }
 
   toggleModal() {
@@ -62,10 +73,10 @@ export default class Profile extends React.Component {
             <ProfilePic
               first={this.props.first}
               last={this.props.last}
-              url={this.props.url}
+              url={this.state.url}
             />
             <span className="greeting">
-              hello {this.props.first} {this.props.last} !{" "}
+              hello {this.props.first} {this.props.last}
             </span>
             <button onClick={this.toggleModal}> change profile pic </button>
             <button onClick={this.deleteaccount}>delete account</button>
@@ -83,13 +94,7 @@ export default class Profile extends React.Component {
         </div>
 
         {this.state.uploaderVisible && (
-          <Uploader
-            finishedUploading={newUrl =>
-              this.setState({
-                url: newUrl
-              })
-            }
-          />
+          <Uploader updateProfilePic={this.updateProfilePic} />
         )}
       </>
     );

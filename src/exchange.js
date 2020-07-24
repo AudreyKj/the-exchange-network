@@ -12,8 +12,6 @@ export default function Exchange() {
     (async () => {
       const { data } = await axios.get("/getexchanges");
 
-      console.log("data", data);
-
       setexchangeInfo(data);
     })();
   }, []);
@@ -40,7 +38,6 @@ export default function Exchange() {
       .post("/postexchange", newExchange)
       .then(function(data) {
         setnewPost(data.data);
-        document.querySelector("form.form-exchange").reset();
         return;
       })
       .catch(function(error) {
@@ -51,7 +48,6 @@ export default function Exchange() {
   const handleChange = e => {
     setError(false);
 
-    console.log("newExchange", newExchange);
     setnewExchange({ ...newExchange, [e.target.name]: e.target.value });
 
     return;

@@ -85,9 +85,7 @@ export default class BioEditor extends React.Component {
             </div>
 
             {this.state.error && (
-              <span className="error">
-                Oops, something went wrong! please try again.
-              </span>
+              <span className="error">Error: please try again.</span>
             )}
           </>
         )}
