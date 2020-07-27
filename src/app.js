@@ -47,6 +47,22 @@ export default class App extends React.Component {
     return (
       <>
         <Helmet>
+          <title> exchange app </title>
+          <meta name="description" content="exchange" />
+          <meta name="keywords" content="exchange, friends, social media" />
+          <meta name="application-name" content="exchange app" />
+          <meta name="theme-color" content="black" />
+          <meta property="og:image:width" content="1080" />
+          <meta property="og:image:height" content="1080" />
+          <meta
+            property="og:url"
+            content="https://the-exchange-network.herokuapp.com/welcome"
+          />
+          <meta
+            property="og:description"
+            content="exchange app - exchange languages & skills with your friends"
+          />
+
           <meta property="og:image:width" content="1080" />
           <meta property="og:image:height" content="1080" />
           <meta property="og:image" content="preview.jpg" />
