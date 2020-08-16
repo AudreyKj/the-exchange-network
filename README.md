@@ -30,5 +30,3 @@ In addition, users can update their profile picture, chat with other users, make
 
 ![screenshot](readMe/screenshot_1.png)
 ![screenshot](readMe/screenshot_2.png)
-![screenshot](readMe/screenshot_3.png)
-![screenshot](readMe/screenshot_4.png)
